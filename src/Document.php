@@ -21,4 +21,10 @@ final class Document implements \JsonSerializable
     {
         return $this->ast;
     }
+
+    /** Copy arrays and JSON model objects, including trees containing PHP references. */
+    public function copy(): self
+    {
+        return new self(Internal\AstCopy::copy($this->ast), $this->diagnostics, $this->source, $this->origin);
+    }
 }

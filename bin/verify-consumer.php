@@ -33,6 +33,13 @@ $optional = new Splitice\Mystmd\Converter(extensions: [new Splitice\Mystmd\Exten
 if ($optional->parse("```{tab-item} Example\nbody\n```")->ast['children'][0]['children'][0]['type'] !== 'tabItem') {
     throw new RuntimeException('Installed package is missing optional extension resources');
 }
+$semantic = new Splitice\Mystmd\Converter(['html' => ['profile' => 'semantic']]);
+$document = $semantic->parse("(target)=\n\n```{dropdown} Title\n:open:\n\nBody\n```\n\n[](#target)", 'guide.md');
+$original = json_encode($document, JSON_THROW_ON_ERROR);
+$result = $semantic->render($document);
+if (!str_contains($result->html, '<summary>Title</summary>') || !str_contains($result->html, 'href="#target"') || $result->ast !== $result->document->ast || $result->document->origin !== 'guide.md' || json_encode($document, JSON_THROW_ON_ERROR) !== $original || $result->diagnostics !== []) {
+    throw new RuntimeException('Installed package failed its semantic rendering contract');
+}
 echo "Independent consumer API and resource checks passed.\n";
 PHP;
 file_put_contents($directory . '/probe.php', $probe);

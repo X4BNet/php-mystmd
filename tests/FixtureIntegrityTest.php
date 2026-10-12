@@ -27,6 +27,7 @@ final class FixtureIntegrityTest extends TestCase
     {
         $inventory = json_decode((string)file_get_contents(__DIR__ . '/Fixtures/upstream-tests.json'), true, flags: JSON_THROW_ON_ERROR);
         $coverage = json_decode((string)file_get_contents(__DIR__ . '/upstream-coverage.json'), true, flags: JSON_THROW_ON_ERROR);
+        $mappings = new Support\CoverageMappings();
         self::assertSame($inventory['revision'], $coverage['revision']);
         self::assertCount(count($inventory['tests']), $coverage['tests']);
         foreach ($inventory['tests'] as $index => $original) {
@@ -42,11 +43,29 @@ final class FixtureIntegrityTest extends TestCase
             } else {
                 self::assertNotEmpty($entry['php'], $identity);
                 foreach ($entry['php'] as $mapping) {
-                    [$class, $method] = explode('::', explode(' / ', $mapping)[0]);
-                    self::assertTrue(method_exists(__NAMESPACE__ . '\\' . $class, $method), $mapping);
+                    $mappings->verify($original, $mapping);
+                    self::addToAssertionCount(1);
                 }
             }
         }
         self::assertEquals($coverage['counts'], array_count_values(array_column($coverage['tests'], 'status')));
+    }
+
+    public function testStaleDatasetIsRejectedEvenWhenTheMethodExists(): void
+    {
+        $fixture = json_decode((string)file_get_contents(__DIR__ . '/Fixtures/reference-calls.json'), true, flags: JSON_THROW_ON_ERROR);
+        $original = array_intersect_key($fixture['cases'][0], ['file' => true, 'title' => true]);
+        $this->expectExceptionMessage('Stale reference identity');
+        (new Support\CoverageMappings())->verify($original, 'UpstreamReferenceTest::testHandwrittenParserCase / reference-calls.json / 999999');
+    }
+
+    public function testProviderFilteringCannotSilentlyLoseCoverage(): void
+    {
+        $file = 'packages/myst-spec/docs/examples/blocks.yml';
+        $case = \Symfony\Component\Yaml\Yaml::parseFile(__DIR__ . '/Fixtures/upstream/' . $file)['cases'][4];
+        self::assertArrayNotHasKey('myst', $case);
+        self::assertArrayNotHasKey('markdown', $case);
+        $this->expectExceptionMessage('Missing or changed executable dataset');
+        (new Support\CoverageMappings())->verify(['parameters' => [null, $case]], 'UpstreamFixtureTest::testUpstreamParse / ' . $file . ':4');
     }
 }

@@ -51,65 +51,11 @@ final class BuiltInOptions
                 $parser->warn('unexpected ' . $part . ' provided for ' . $kind . ': ' . $name, $kind . '-' . $part . '-correct');
             }
         }
-        $raw = $node['options'] ?? [];
-        $options = [];
-        foreach ($spec['options'] ?? [] as $key => $definition) {
-            $used = array_key_exists($key, $raw) ? $key : null;
-            foreach ((array)($definition['alias'] ?? []) as $alias) {
-                if (!array_key_exists($alias, $raw)) {
-                    continue;
-                }
-                if ($used !== null) {
-                    $parser->warn('option "' . $used . '" used instead of "' . $alias . '" (in ' . $name . ')', 'directive-options-correct');
-                } else {
-                    $used = $alias;
-                    $raw[$key] = $raw[$alias];
-                }
-                unset($raw[$alias]);
-            }
-            if ($used === null) {
-                if ($definition['required'] ?? false) {
-                    $parser->warn('required option "' . $key . '" not provided (in ' . $name . ')', 'directive-options-correct', 'error');
-                    $node['type'] = 'mystDirectiveError';
-                    $valid = false;
-                }
-                continue;
-            }
-            $value = $raw[$key];
-            unset($raw[$key]);
-            $description = 'option "' . $key . '" (in ' . $name . ')';
-            switch ($definition['type'] ?? 'string') {
-                case 'boolean':
-                    if (is_string($value) && in_array(strtolower($value), ['true', 'false'], true)) {
-                        $value = strtolower($value) === 'true';
-                    } elseif (!is_bool($value)) {
-                        $parser->warn('value is not a boolean for ' . $description, 'directive-options-correct');
-                        $value = $value !== '' && $value !== 0 && $value !== null;
-                    }
-                    break;
-                case 'number':
-                    if ($value === true || !(is_numeric($value) || $value === '' || $value === false || $value === null)) {
-                        $parser->warn('number not provided for ' . $description, 'directive-options-correct', ($definition['required'] ?? false) ? 'error' : 'warning');
-                        $valid = $valid && !($definition['required'] ?? false);
-                        continue 2;
-                    }
-                    $value = is_numeric($value) ? $value + 0 : 0;
-                    break;
-                case 'string':
-                    if ($value === true) {
-                        $value = '';
-                    } elseif (!is_string($value) && (!is_numeric($value) || !$value)) {
-                        $parser->warn('value is not a string for ' . $description, 'directive-options-correct');
-                        $value = $value === false ? 'false' : (string)$value;
-                    } else {
-                        $value = (string)$value;
-                    }
-                    break;
-            }
-            $options[$key] = $value;
-        }
-        foreach (array_keys($raw) as $key) {
-            $parser->warn('unexpected option "' . $key . '" provided (in ' . $name . ')', 'directive-options-correct');
+        $validated = SchemaValues::options($node['options'] ?? [], $spec['options'] ?? [], $parser, $name, $node['position']['start']['line'] ?? 1, $role, false);
+        $options = $validated['options'];
+        $valid = $valid && $validated['valid'];
+        if ($validated['missingRequired']) {
+            $node['type'] = 'mystDirectiveError';
         }
         if ($role) {
             if ($options !== []) {

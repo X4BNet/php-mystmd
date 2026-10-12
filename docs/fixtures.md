@@ -15,8 +15,9 @@ Do not update expectations using results from the PHP implementation.
    `bin/export-reference.mjs`, `bin/export-behavior.mjs`, and
    `bin/inventory-upstream.mjs` using Node. The first two execute the original
    upstream assertions while recording their inputs and expected results.
-6. Run `node bin/export-definitions.mjs` and `node bin/export-edge-cases.mjs`.
-   The latter is a set of supplementary compatibility probes evaluated by upstream.
+6. Run `node bin/export-definitions.mjs`, `node bin/export-edge-cases.mjs`, and
+   `node bin/export-regressions.mjs`. The last two are supplementary compatibility
+   probes evaluated by upstream, including malformed option values and footnotes.
 7. Run `php bin/source-provenance.php /absolute/path/to/mystmd` and
    `php bin/build-coverage.php`. The latter must report no pending tests.
 8. Review fixture hashes, reference diffs, source version pins, licenses, and the
@@ -33,6 +34,19 @@ and normalized only in tests whose source checks type/presence rather than value
 Upstream HTML fixture normalization is preserved. The end-to-end CommonMark runner
 retains whitespace checks, and supplementary cases check exact text inside `pre`,
 `code`, and `textarea` before applying upstream serialization normalization.
+The edge-case fixtures also run through `Converter::convert()` from MyST source;
+regressions check the returned AST, diagnostics, and parsed-document immutability.
+
+The cyclic-footnote regression retains the original upstream HTML expectation.
+Upstream omits a backlink discovered after rendering an earlier footnote; PHP
+intentionally completes that backlink. The test compares the rest of the upstream
+output and independently checks all backlinks against existing DOM targets.
+
+`FixtureIntegrityTest` verifies each implemented mapping against its actual PHPUnit
+data provider key and values, as well as the source fixture identity/content.
+Mappings shared by the original backend runners are intentional and allowed; the
+referenced executable dataset must still exist and match. Filtered or removed
+datasets cannot remain marked implemented merely because a test method exists.
 
 Upstream skips are recorded separately. A failing PHP case must be fixed; it must
 never be reclassified as an upstream skip or silently removed from a data provider.

@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Splitice\Mystmd;
 
-/** Declarative argument, body and option validation for roles and directives. */
+/**
+ * Declarative argument, body and option validation for roles and directives.
+ * @phpstan-import-type DefinitionSchema from Types
+ */
 final class Definition
 {
     /**
      * @param array<string, mixed> $spec
+     * @phpstan-param DefinitionSchema $spec
      * @param \Closure $run
      * @phpstan-param \Closure(array<string, mixed>, Parser): list<array<string, mixed>> $run
      */
@@ -51,7 +55,7 @@ final class Definition
                     }
                     $valid = false;
                 } elseif ($value !== null) {
-                    $converted = $this->convert($value, $schema, $parser, $line, !$role && $key === 'body', $part . ' of ' . $kind . ': ' . $node['name'], $kind . '-' . $part . '-correct');
+                    $converted = Internal\SchemaValues::convert($value, $schema, $parser, $line, !$role && $key === 'body', $part . ' of ' . $kind . ': ' . $node['name'], $kind . '-' . $part . '-correct');
                     if ($converted !== null) {
                         $data[$key] = $converted;
                     } elseif ($schema['required'] ?? false) {
@@ -60,40 +64,11 @@ final class Definition
                 }
                 continue;
             }
-            $raw = $node['options'] ?? [];
-            foreach ($this->spec['options'] ?? [] as $option => $schema) {
-                $used = array_key_exists($option, $raw) ? $option : null;
-                foreach ((array)($schema['alias'] ?? []) as $alias) {
-                    if (!array_key_exists($alias, $raw)) {
-                        continue;
-                    }
-                    if ($used !== null) {
-                        $parser->warn('option "' . $used . '" used instead of "' . $alias . '" (in ' . $node['name'] . ')', 'directive-options-correct');
-                    } else {
-                        $used = $alias;
-                        $raw[$option] = $raw[$alias];
-                    }
-                    unset($raw[$alias]);
-                }
-                if ($used === null) {
-                    if ($schema['required'] ?? false) {
-                        $parser->warn('required option "' . $option . '" not provided (in ' . $node['name'] . ')', 'directive-options-correct', 'error');
-                        $node['type'] = 'mystDirectiveError';
-                        $valid = false;
-                    }
-                    continue;
-                }
-                $optionLine = $line + ($role ? 0 : 1 + (int)array_search($used, array_keys($node['options']), true));
-                $converted = $this->convert($raw[$option], $schema, $parser, $optionLine, false, 'option "' . $option . '" (in ' . $node['name'] . ')', 'directive-options-correct');
-                if ($converted !== null) {
-                    $data['options'][$option] = $converted;
-                } elseif ($schema['required'] ?? false) {
-                    $valid = false;
-                }
-                unset($raw[$option]);
-            }
-            foreach (array_keys($raw) as $option) {
-                $parser->warn('unexpected option "' . $option . '" provided (in ' . $node['name'] . ')', 'directive-options-correct');
+            $validated = Internal\SchemaValues::options($node['options'] ?? [], $this->spec['options'] ?? [], $parser, $node['name'], $line, $role, true);
+            $data['options'] = $validated['options'];
+            $valid = $valid && $validated['valid'];
+            if ($validated['missingRequired']) {
+                $node['type'] = 'mystDirectiveError';
             }
             if ($role) {
                 if ($data['options'] !== []) {
@@ -111,49 +86,4 @@ final class Definition
         return $node;
     }
 
-    /**
-     * @param array<string, mixed> $schema
-     */
-    private function convert(mixed $value, array $schema, Parser $parser, int $line, bool $block, string $description, string $rule): mixed
-    {
-        $required = $schema['required'] ?? false;
-        $type = $schema['type'] ?? 'string';
-        if ($type === 'myst' || $type === 'parsed') {
-            if (!is_string($value)) {
-                $parser->warn('content is parsed from non-string value for ' . $description, $rule);
-            }
-            $children = $block ? $parser->parseBody((string)$value) : $parser->parseInline((string)$value, $line);
-            if ($children === []) {
-                if ($required) {
-                    $parser->warn('no parsed content for required ' . $description, $rule, 'error');
-                }
-                return null;
-            }
-            return $children;
-        }
-        if ($type === 'boolean') {
-            if (is_string($value) && in_array(strtolower($value), ['true', 'false'], true)) {
-                return strtolower($value) === 'true';
-            }
-            if (!is_bool($value)) {
-                $parser->warn('value is not a boolean for ' . $description, $rule);
-            }
-            // JavaScript treats the nonempty string "0" as true.
-            return $value !== '' && $value !== 0 && $value !== 0.0 && $value !== null && $value !== false;
-        }
-        if ($type === 'number') {
-            if ($value === true || !(is_numeric($value) || $value === false || $value === '' || $value === null)) {
-                $parser->warn('number not provided for ' . $description, $rule, $required ? 'error' : 'warning');
-                return null;
-            }
-            return is_numeric($value) ? $value + 0 : 0;
-        }
-        if ($value === true) {
-            return '';
-        }
-        if (!is_string($value) && !(is_numeric($value) && $value)) {
-            $parser->warn('value is not a string for ' . $description, $rule);
-        }
-        return $value === false ? 'false' : (string)$value;
-    }
 }

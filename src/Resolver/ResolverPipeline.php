@@ -7,7 +7,7 @@ namespace Splitice\Mystmd\Resolver;
 use Splitice\Mystmd\Diagnostic;
 use Splitice\Mystmd\Document;
 use Splitice\Mystmd\Parser;
-use Splitice\Mystmd\ReferenceState;
+use Splitice\Mystmd\Internal\RenderPreparation;
 use Splitice\Mystmd\Transforms;
 
 /** Applies caller capabilities to a copy of a document, preserving parse results. */
@@ -21,13 +21,26 @@ final class ResolverPipeline
     /** Resolve includes before labels, then external references and resources. */
     public function resolve(Document $document): Document
     {
-        $resolved = new Document($document->ast, $document->diagnostics, $document->source, $document->origin);
+        $resolved = $this->expandIncludes($document);
+        RenderPreparation::prepare($resolved, ($this->parser->options['html']['profile'] ?? 'upstream') === 'semantic');
+        $this->resolveExternal($resolved);
+        return $resolved;
+    }
+
+    /** Expand includes on a copy before the renderer prepares local targets. */
+    public function expandIncludes(Document $document): Document
+    {
+        $resolved = $document->copy();
         $context = new ResolutionContext($resolved, $document->origin, $document->origin !== null ? [$document->origin] : []);
         $this->includes($resolved->ast, $context, $resolved);
-        Transforms::propagateTargets($resolved->ast);
-        (new ReferenceState())->resolve($resolved->ast);
-        $this->references($resolved->ast, $context, $resolved);
         return $resolved;
+    }
+
+    /** Apply external capabilities only after local references have been resolved. */
+    public function resolveExternal(Document $document): void
+    {
+        $context = new ResolutionContext($document, $document->origin, $document->origin !== null ? [$document->origin] : []);
+        $this->references($document->ast, $context, $document);
     }
 
     /** Resolve descendants using the origin of the include that introduced them.
@@ -35,8 +48,9 @@ final class ResolverPipeline
      */
     private function references(array &$node, ResolutionContext $context, Document $resolved): void
     {
-        if (isset($node['_includeContext'])) {
-            $context = new ResolutionContext($resolved, $node['_includeContext'][0], $node['_includeContext'][1]);
+        $includeContext = $node['_includeContext'] ?? null;
+        if (is_array($includeContext)) {
+            $context = new ResolutionContext($resolved, $includeContext[0], $includeContext[1]);
             unset($node['_includeContext']);
         }
         foreach ($node['children'] ?? [] as $index => $child) {

@@ -168,7 +168,11 @@ final class BuiltInDirectives
         } elseif (in_array($name, ['mermaid', 'myst'], true)) {
             $child = ['type' => $name, 'value' => $body];
             if (isset($options['numbering'])) {
-                $child['numbering'] = is_string($options['numbering']) ? Yaml::parse($options['numbering']) : $options['numbering'];
+                try {
+                    $child['numbering'] = is_string($options['numbering']) ? Yaml::parse($options['numbering']) : $options['numbering'];
+                } catch (\Symfony\Component\Yaml\Exception\ParseException) {
+                    // The pinned directive ignores invalid optional numbering YAML.
+                }
             }
         } elseif ($name === 'mdast') {
             $child = ['type' => 'mdast', 'id' => $arg];
@@ -285,7 +289,7 @@ final class BuiltInDirectives
             if (isset($node['options'])) {
                 $lines = [];
                 foreach ($node['options'] as $key => $value) {
-                    $lines[] = ':' . $key . ': ' . (is_bool($value) ? ($value ? 'true' : 'false') : $value);
+                    $lines[] = ':' . $key . ': ' . SchemaValues::string($value);
                 }
                 $node['value'] = implode("\n", $lines) . ($body !== '' ? "\n\n" . $body : '');
                 unset($node['options']);

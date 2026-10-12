@@ -39,3 +39,27 @@ jobs:
       - run: composer phan
       - name: Verify independent Composer consumer
         run: php bin/verify-consumer.php
+
+  coverage:
+    name: PHP 8.5 / line and branch coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: dom, intl, mbstring
+          coverage: xdebug
+          tools: composer:v2
+      - run: composer update --prefer-stable --no-interaction --no-progress --no-ansi
+      - run: composer test:coverage
+      - run: composer coverage:check
+      - name: Record performance without a timing gate
+        run: php -d xdebug.mode=off bin/benchmark.php > build/benchmark.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: php85-coverage-and-performance
+          path: |
+            build/coverage/
+            build/benchmark.json

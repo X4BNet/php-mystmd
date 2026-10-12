@@ -6,7 +6,10 @@ namespace Splitice\Mystmd;
 
 use Splitice\Mystmd\Extension\ExtensionInterface;
 
-/** Convenient, reusable parse-and-render facade. */
+/**
+ * Convenient, reusable parse-and-render facade.
+ * @phpstan-import-type Options from Types
+ */
 final class Converter
 {
     private Parser $parser;
@@ -15,6 +18,7 @@ final class Converter
     /**
      *
      * @param array<string, mixed> $options
+     * @phpstan-param Options $options
      * @param list<ExtensionInterface> $extensions
      */
     public function __construct(array $options = [], array $extensions = [], private readonly ?Resolver\ResolverSet $resolvers = null)
@@ -42,9 +46,6 @@ final class Converter
     /** Render a parsed document using this converter's extensions and resolvers. */
     public function render(Document $document): RenderResult
     {
-        if ($this->resolvers !== null) {
-            $document = (new Resolver\ResolverPipeline($this->resolvers, $this->parser))->resolve($document);
-        }
-        return $this->renderer->render($document);
+        return $this->renderer->render($document, $this->resolvers !== null ? new Resolver\ResolverPipeline($this->resolvers, $this->parser) : null);
     }
 }

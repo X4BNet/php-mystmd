@@ -108,3 +108,71 @@ which paths, URL schemes, hosts, and resources its resolvers permit.
 Includes support line ranges, start/end markers, literal code, and original line
 number matching. References to included document-local labels resolve after inclusion.
 Parsed input documents are preserved when resolving and rendering.
+
+## Transform recipes
+
+Use the named transform APIs for application code. `LanguageTransforms::apply()`
+and the existing positional upstream-compatible entrypoints remain available.
+Registry transforms run during parsing, including parsing included documents;
+semantic HTML preparation runs after include expansion. Custom renderer callbacks
+take precedence over either profile's built-in node serializer.
+
+### Extract front matter and keep the title
+
+```php
+use Splitice\Mystmd\Frontmatter;
+use Splitice\Mystmd\Parser;
+
+$parser = new Parser();
+$document = $parser->parse("---\ntitle: Guide\n---\n\n# Guide\n\nBody");
+$warnings = new Parser();
+$metadata = Frontmatter::extract($document->ast, $warnings, [
+    'propagateTargets' => true,
+    'keepTitleNode' => true,
+]);
+array_push($document->diagnostics, ...$warnings->diagnostics());
+$title = $metadata['frontmatter']['title'];
+```
+
+Extraction is explicit in both HTML profiles. Use a separate diagnostic collector
+when applying transforms to an existing document to avoid duplicating parse warnings.
+
+### Set figure numbering before semantic rendering
+
+```php
+use Splitice\Mystmd\Numbering;
+use Splitice\Mystmd\Transforms;
+
+$converter = new Converter(['html' => ['profile' => 'semantic']]);
+$document = $converter->parse($source);
+Transforms::propagateTargets($document->ast);
+$warnings = new Parser();
+$numbering = new Numbering([
+    'content_includes_title' => true,
+    'numbering' => ['figure' => ['enabled' => true, 'start' => 5]],
+]);
+$numbering->apply($document->ast, $warnings);
+array_push($document->diagnostics, ...$warnings->diagnostics());
+$result = $converter->render($document);
+```
+
+Semantic preparation preserves existing `enumerator` and `enumerated` values. The
+configuration above is the explicit per-kind Numbering schema; it does not imply
+project/frontmatter configuration normalization or number unseen include content.
+
+### Adjust heading depth
+
+```php
+use Splitice\Mystmd\LanguageTransforms;
+
+$warnings = new Parser();
+LanguageTransforms::headingDepth($document->ast, $warnings, ['firstDepth' => 2]);
+array_push($document->diagnostics, ...$warnings->diagnostics());
+```
+
+Shared PHPStan shapes in `Splitice\Mystmd\Types` describe positions, HTML/parser
+options, definition schemas, and reference resolver results. Import them with
+`@phpstan-import-type` when annotating application extensions; the runtime AST
+remains serializable PHP arrays. Definition callbacks receive validated/coerced
+values. Malformed content produces diagnostics; programming exceptions raised by
+registered definition callbacks propagate to the application.

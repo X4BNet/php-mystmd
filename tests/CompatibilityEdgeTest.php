@@ -8,6 +8,7 @@ use Dom\HTMLDocument;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Splitice\Mystmd\Document;
+use Splitice\Mystmd\Converter;
 use Splitice\Mystmd\HtmlRenderer;
 use Splitice\Mystmd\Parser;
 
@@ -57,6 +58,22 @@ final class CompatibilityEdgeTest extends TestCase
         $html = (new HtmlRenderer())->render(new Document($case['ast']))->html;
         self::assertSame(self::whitespaceContent($case['html']), self::whitespaceContent($html));
         self::assertSame(UpstreamFixtureTest::normalizeHtml($case['html']), UpstreamFixtureTest::normalizeHtml($html));
+    }
+
+    /** @param array<string, mixed> $case */
+    #[DataProvider('cases')]
+    public function testConversionFromSource(array $case): void
+    {
+        $converter = new Converter($case['options']);
+        $document = $converter->parse($case['source']);
+        $before = json_encode($document, JSON_THROW_ON_ERROR);
+        $result = $converter->render($document);
+        $converted = $converter->convert($case['source']);
+        self::assertSame($before, json_encode($document, JSON_THROW_ON_ERROR));
+        self::assertSame($result->ast, $result->document->ast);
+        self::assertEquals($result->diagnostics, $converted->diagnostics);
+        self::assertSame(self::whitespaceContent($case['html']), self::whitespaceContent($converted->html));
+        self::assertSame(UpstreamFixtureTest::normalizeHtml($case['html']), UpstreamFixtureTest::normalizeHtml($converted->html));
     }
 
     /** @return list<string> */

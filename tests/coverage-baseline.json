@@ -1,0 +1,13 @@
+{
+    "php": "8.5",
+    "metrics": {
+        "lines": {
+            "covered": 2948,
+            "total": 3155
+        },
+        "branches": {
+            "covered": 3354,
+            "total": 4236
+        }
+    }
+}

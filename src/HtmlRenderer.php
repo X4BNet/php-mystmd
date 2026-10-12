@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Splitice\Mystmd;
 
-/** Render the MyST AST to semantic HTML without executing document content. */
+/**
+ * Render the MyST AST without executing document content.
+ * @phpstan-import-type HtmlOptions from Types
+ */
 final class HtmlRenderer
 {
     /** @var array<string, array<string, mixed>> */
@@ -15,35 +18,45 @@ final class HtmlRenderer
     private array $footnoteOrder = [];
     /** @var array<string, int> */
     private array $footnoteUses = [];
-    private ReferenceState $state;
+    /** @var list<string|int> */
+    private array $footnoteQueue = [];
+    private readonly bool $semantic;
     /** @var list<Diagnostic> */
     private array $diagnostics = [];
 
-    /** @param array<string, mixed> $options */
+    /**
+     * @param array<string, mixed> $options
+     * @phpstan-param HtmlOptions $options
+     */
     public function __construct(public readonly array $options = [], public readonly Registry $registry = new Registry())
     {
-        $this->state = new ReferenceState();
+        $profile = array_key_exists('profile', $options) ? $options['profile'] : 'upstream';
+        if (!in_array($profile, ['upstream', 'semantic'], true)) {
+            throw new \InvalidArgumentException('Unknown HTML profile: ' . Internal\SchemaValues::string($profile));
+        }
+        $this->semantic = $profile === 'semantic';
     }
 
     /** Render a copy, so rendering does not alter a caller's parse tree. */
-    public function render(Document $document): RenderResult
+    public function render(Document $document, ?Resolver\ResolverPipeline $resolvers = null): RenderResult
     {
         $this->definitions = $this->footnotes = $this->footnoteOrder = $this->footnoteUses = [];
-        $this->state = new ReferenceState();
-        $tree = $document->ast;
+        $this->footnoteQueue = [];
+        $document = $resolvers?->expandIncludes($document) ?? $document->copy();
+        Internal\RenderPreparation::prepare($document, $this->semantic);
+        $resolvers?->resolveExternal($document);
         $this->diagnostics = $document->diagnostics;
-        Transforms::propagateTargets($tree);
-        $this->state->resolve($tree);
-        Transforms::walk($tree, function (array &$node): void {
+        Transforms::walk($document->ast, function (array &$node): void {
             if ($node['type'] === 'definition') {
                 $this->definitions[$node['identifier']] = $node;
             } elseif ($node['type'] === 'footnoteDefinition') {
                 $this->footnotes[$node['identifier']] = $node;
             }
         });
-        $html = $this->node($tree);
+        $html = $this->node($document->ast);
         $html .= $this->renderFootnotes();
-        return new RenderResult(trim($html), new Document($document->ast, $this->diagnostics, $document->source, $document->origin));
+        $document->diagnostics = $this->diagnostics;
+        return new RenderResult(trim($html), $document);
     }
 
     /** Report an extension rendering failure without changing the input document.
@@ -73,16 +86,22 @@ final class HtmlRenderer
         $value = (string)($node['value'] ?? '');
         $attrs = [];
         if (isset($node['identifier'])) {
-            $attrs['id'] = $node['identifier'];
+            $attrs['id'] = $this->semantic ? ($node['html_id'] ?? $node['identifier']) : $node['identifier'];
         }
         if (isset($node['class'])) {
             $attrs['class'] = $node['class'];
+        }
+        if ($this->semantic) {
+            $semantic = Internal\SemanticHtml::node($node, $attrs, $this);
+            if ($semantic !== null) {
+                return $semantic;
+            }
         }
         switch ($type) {
             case 'root': return $this->children($children, "\n");
             case 'text': return self::escape($value);
             case 'inlineCode': return $this->tag('code', [], self::escape($value));
-            case 'paragraph': return $this->tag('p', [], $this->children($children));
+            case 'paragraph': return $this->tag('p', $this->semantic ? $attrs : [], $this->children($children));
             case 'heading': return $this->tag('h' . max(1, min(6, (int)$node['depth'] + (int)($this->options['headingOffset'] ?? 0))), $attrs, $this->children($children));
             case 'emphasis': return $this->tag('em', [], $this->children($children));
             case 'strong': return $this->tag('strong', [], $this->children($children));
@@ -92,10 +111,10 @@ final class HtmlRenderer
             case 'keyboard': return $this->tag('kbd', [], $this->children($children));
             case 'abbreviation': return $this->tag('abbr', isset($node['title']) ? ['title' => $node['title']] : [], $this->children($children));
             case 'break': return $this->tag('br', []) . "\n";
-            case 'thematicBreak': return $this->tag('hr', []);
+            case 'thematicBreak': return $this->tag('hr', $this->semantic ? $attrs : []);
             case 'blockquote':
                 $body = $this->children($children, "\n");
-                return $this->tag('blockquote', [], "\n" . $body . ($body !== '' ? "\n" : ''));
+                return $this->tag('blockquote', $this->semantic ? $attrs : [], "\n" . $body . ($body !== '' ? "\n" : ''));
             case 'code':
                 unset($attrs['class']);
                 $classes = [];
@@ -127,6 +146,9 @@ final class HtmlRenderer
                 return $this->tag('a', $link, $this->children($children));
             case 'image':
                 $image = ['src' => $this->url((string)$node['url'])];
+                if ($this->semantic && isset($attrs['id'])) {
+                    $image['id'] = $attrs['id'];
+                }
                 foreach (['alt', 'title'] as $key) {
                     if (isset($node[$key])) {
                         $image[$key] = $node[$key];
@@ -144,6 +166,9 @@ final class HtmlRenderer
                 return $this->tag('img', $image);
             case 'list':
                 $listAttrs = ($node['ordered'] ?? false) && ($node['start'] ?? 1) !== 1 ? ['start' => $node['start']] : [];
+                if ($this->semantic) {
+                    $listAttrs += $attrs;
+                }
                 foreach ($children as $child) {
                     if (isset($child['checked'])) {
                         $listAttrs['class'] = 'contains-task-list';
@@ -151,7 +176,7 @@ final class HtmlRenderer
                 }
                 return $this->tag(($node['ordered'] ?? false) ? 'ol' : 'ul', $listAttrs, "\n" . $this->children($children, "\n") . "\n");
             case 'listItem':
-                $itemAttrs = [];
+                $itemAttrs = $this->semantic ? $attrs : [];
                 $prefix = '';
                 if (isset($node['checked'])) {
                     $itemAttrs['class'] = 'task-list-item';
@@ -171,9 +196,9 @@ final class HtmlRenderer
                     $body .= "\n";
                 }
                 return $this->tag('li', $itemAttrs, $body);
-            case 'definitionList': return $this->tag('dl', [], $this->children($children, "\n"));
-            case 'definitionTerm': return $this->tag('dt', [], $this->children($children));
-            case 'definitionDescription': return $this->tag('dd', [], $this->children($children));
+            case 'definitionList': return $this->tag('dl', $this->semantic ? $attrs : [], $this->children($children, "\n"));
+            case 'definitionTerm': return $this->tag('dt', $this->semantic ? $attrs : [], $this->children($children));
+            case 'definitionDescription': return $this->tag('dd', $this->semantic ? $attrs : [], $this->children($children));
             case 'table': return $this->table($node);
             case 'tableRow': return $this->tag('tr', [], $this->children($children));
             case 'tableCell':
@@ -183,16 +208,16 @@ final class HtmlRenderer
                 }
                 return $this->tag(!empty($node['header']) ? 'th' : 'td', $cellAttrs, $this->children($children));
             case 'math':
-                $math = $this->tag('div', ['id' => $node['identifier'] ?? null, 'class' => 'math-display'], self::escape($value));
+                $math = $this->tag('div', ['id' => $attrs['id'] ?? null, 'class' => 'math-display'], self::escape($value));
                 return str_contains($value, "\n") ? $this->tag('pre', [], $math) : $math;
             case 'inlineMath': return $this->tag('span', ['class' => 'math-inline'], self::escape(str_replace(["\r\n", "\r", "\n"], ' ', $value)));
             case 'admonition':
                 $kind = $node['kind'] ?? '';
                 $class = trim(($node['class'] ?? '') . ' admonition ' . ($kind !== 'admonition' ? $kind : ''));
-                if ($kind !== '' && $kind !== 'admonition') {
+                if ($kind !== '' && $kind !== 'admonition' && (!$this->semantic || ($children[0]['type'] ?? '') !== 'admonitionTitle')) {
                     array_unshift($children, ['type' => 'admonitionTitle', 'children' => [['type' => 'text', 'value' => $kind === 'seealso' ? 'See Also' : ucfirst($kind)]]]);
                 }
-                return $this->tag('aside', ['class' => $class], $this->children($children));
+                return $this->tag('aside', ['class' => $class] + ($this->semantic ? $attrs : []), $this->children($children));
             case 'admonitionTitle': return $this->tag('p', ['class' => 'admonition-title'], $this->children($children));
             case 'container':
                 $attrs['class'] = trim((($node['enumerated'] ?? true) !== false ? 'numbered ' : '') . ($node['class'] ?? ''));
@@ -241,7 +266,10 @@ final class HtmlRenderer
                 return $this->tag('div', ['class' => 'directive unhandled'], $this->tag('p', [], $header) . $content . $this->tag('pre', [], $this->tag('code', [], self::escape($value))));
             case 'footnoteReference':
                 $id = $node['identifier'];
-                $this->footnoteOrder[$id] ??= count($this->footnoteOrder) + 1;
+                if (!isset($this->footnoteOrder[$id])) {
+                    $this->footnoteOrder[$id] = count($this->footnoteOrder) + 1;
+                    $this->footnoteQueue[] = $id;
+                }
                 $this->footnoteUses[$id] = ($this->footnoteUses[$id] ?? 0) + 1;
                 $suffix = $this->footnoteUses[$id] > 1 ? '-' . $this->footnoteUses[$id] : '';
                 $prefix = $this->options['clobberPrefix'] ?? 'user-content-';
@@ -253,13 +281,16 @@ final class HtmlRenderer
             case 'margin': return $this->tag('aside', ['class' => 'margin'], '');
             case 'mermaid': case 'myst': return $this->tag('div', ['class' => 'margin'], '');
             case 'details': case 'summary': return $this->tag($type, [], '');
-            default: return isset($node['value']) ? self::escape($value) : $this->tag('div', [], $this->children($children));
+            default: return $this->semantic ? Internal\SemanticHtml::fallback($node, $attrs, $this) : (isset($node['value']) ? self::escape($value) : $this->tag('div', [], $this->children($children)));
         }
     }
 
     /** @param array<string, mixed> $node */
     private function table(array $node): string
     {
+        if ($this->semantic) {
+            return Internal\SemanticHtml::table($node, $this);
+        }
         $rows = $node['children'] ?? [];
         if ($rows === []) {
             return '<table></table>';
@@ -290,15 +321,21 @@ final class HtmlRenderer
         }
         $items = '';
         $prefix = $this->options['clobberPrefix'] ?? 'user-content-';
+        $contents = [];
+        // Rendering a definition may discover more notes. Each is rendered once,
+        // so cycles terminate and callbacks are not executed by a second pass.
+        for ($next = 0; $next < count($this->footnoteQueue); ++$next) {
+            $id = $this->footnoteQueue[$next];
+            $contents[$id] = $this->children($this->footnotes[$id]['children'] ?? []);
+        }
         foreach ($this->footnoteOrder as $id => $index) {
-            $definition = $this->footnotes[$id] ?? ['children' => []];
             $backs = [];
             for ($use = 1; $use <= $this->footnoteUses[$id]; ++$use) {
                 $suffix = $use > 1 ? '-' . $use : '';
                 $backs[] = $this->tag('a', ['href' => '#' . $prefix . 'fnref-' . $id . $suffix, 'data-footnote-backref' => true, 'class' => 'data-footnote-backref', 'aria-label' => 'Back to content'], '↩' . ($use > 1 ? $this->tag('sup', [], (string)$use) : ''));
             }
             $back = implode(' ', $backs);
-            $content = $this->children($definition['children']);
+            $content = $contents[$id];
             $content = str_ends_with($content, '</p>') ? substr($content, 0, -4) . ' ' . $back . '</p>' : $content . $back;
             $items .= $this->tag('li', ['id' => $prefix . 'fn-' . $id], $content);
         }

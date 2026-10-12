@@ -20,8 +20,9 @@ final class Numbering
     /** @param array<string, mixed> $frontmatter
      * @param array<string, mixed>|null $previousCounts
      * @param list<string> $identifiers
+     * @param bool $preserveExistingEnumerators Keep explicit values, including zero, during semantic preparation.
      */
-    public function __construct(array $frontmatter = [], ?array $previousCounts = null, array $identifiers = [])
+    public function __construct(array $frontmatter = [], ?array $previousCounts = null, array $identifiers = [], private readonly bool $preserveExistingEnumerators = false)
     {
         $defaults = [];
         foreach (['equation' => '(%s)', 'subequation' => '(%s)', 'figure' => 'Figure %s', 'subfigure' => 'Figure %s', 'table' => 'Table %s', 'code' => 'Program %s'] as $kind => $template) {
@@ -141,7 +142,8 @@ final class Numbering
         $headingDepth = ($node['depth'] ?? 1) - (!empty($this->numbering['title']['enabled']) ? 0 : 1) + $this->offset;
         $configKey = $kind === 'heading' ? 'heading_' . $headingDepth : (!empty($node['subcontainer']) ? 'subfigure' : $kind);
         $enabled = $node['enumerated'] ?? $this->numbering[$configKey]['enabled'] ?? $this->numbering['all']['enabled'] ?? false;
-        if (!$hidden && $enabled && empty($node['enumerator'])) {
+        $hasEnumerator = $this->preserveExistingEnumerators ? array_key_exists('enumerator', $node) : !empty($node['enumerator']);
+        if (!$hidden && $enabled && !$hasEnumerator) {
             if ($kind === 'heading') {
                 $this->counts['heading'] = ReferenceState::incrementHeadingCounts($headingDepth, $this->counts['heading']);
                 $node['enumerator'] = $this->format(ReferenceState::formatHeadingEnumerator($this->counts['heading']), $configKey);

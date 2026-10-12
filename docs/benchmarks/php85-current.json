@@ -1,0 +1,132 @@
+{
+    "php": "8.5.8",
+    "os": "Linux",
+    "iterations": 5,
+    "max_nesting": 64,
+    "dependencies": {
+        "league/commonmark": "2.10.3",
+        "symfony/yaml": "v8.1.8"
+    },
+    "cases": [
+        {
+            "profile": "upstream",
+            "case": "roles-8192",
+            "source_bytes": 8246,
+            "median_ms": 118.809,
+            "peak_bytes": 14680064,
+            "peak_used_bytes": 10189056,
+            "html_sha256": "93164af992661bb1dcae3fd7e171a090a928f012e3ed4643bf49261a737b9dd5",
+            "diagnostics": 0
+        },
+        {
+            "profile": "upstream",
+            "case": "roles-16384",
+            "source_bytes": 16424,
+            "median_ms": 277.327,
+            "peak_bytes": 23068672,
+            "peak_used_bytes": 16396384,
+            "html_sha256": "6efaf7a54983ac8d401c6cee990f20912245d9581fce2f986ca3445b3f71754a",
+            "diagnostics": 0
+        },
+        {
+            "profile": "upstream",
+            "case": "roles-32768",
+            "source_bytes": 32827,
+            "median_ms": 755.541,
+            "peak_bytes": 39845888,
+            "peak_used_bytes": 30395192,
+            "html_sha256": "2ece3913b25f3d4395d70cb5d2462adbeadf2dc6feb213b1ceea6fc1649a498d",
+            "diagnostics": 0
+        },
+        {
+            "profile": "upstream",
+            "case": "roles-65536",
+            "source_bytes": 65586,
+            "median_ms": 2604.313,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 58355216,
+            "html_sha256": "cfda362fa3388c8960c013b491e503fc41b0a2d5fe86b525a818b337e442ef69",
+            "diagnostics": 0
+        },
+        {
+            "profile": "upstream",
+            "case": "nested-directives-20",
+            "source_bytes": 677,
+            "median_ms": 6.716,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 4507520,
+            "html_sha256": "a0ec73f0a37f83faa361b482c597ffe103c8919afaae9c34edabc7a064927e8a",
+            "diagnostics": 0
+        },
+        {
+            "profile": "upstream",
+            "case": "nested-includes-12",
+            "source_bytes": 36,
+            "median_ms": 12.083,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 4121160,
+            "html_sha256": "cd17a8a6d7d05a3163d3de8030203e861b1df7242954be71f82afe50426c2e71",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "roles-8192",
+            "source_bytes": 8246,
+            "median_ms": 138.045,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 14670032,
+            "html_sha256": "93164af992661bb1dcae3fd7e171a090a928f012e3ed4643bf49261a737b9dd5",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "roles-16384",
+            "source_bytes": 16424,
+            "median_ms": 338.194,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 17093016,
+            "html_sha256": "6efaf7a54983ac8d401c6cee990f20912245d9581fce2f986ca3445b3f71754a",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "roles-32768",
+            "source_bytes": 32827,
+            "median_ms": 937.482,
+            "peak_bytes": 75497472,
+            "peak_used_bytes": 30987648,
+            "html_sha256": "2ece3913b25f3d4395d70cb5d2462adbeadf2dc6feb213b1ceea6fc1649a498d",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "roles-65536",
+            "source_bytes": 65586,
+            "median_ms": 2459.043,
+            "peak_bytes": 77594624,
+            "peak_used_bytes": 58737352,
+            "html_sha256": "cfda362fa3388c8960c013b491e503fc41b0a2d5fe86b525a818b337e442ef69",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "nested-directives-20",
+            "source_bytes": 677,
+            "median_ms": 6.499,
+            "peak_bytes": 77594624,
+            "peak_used_bytes": 4538384,
+            "html_sha256": "a0ec73f0a37f83faa361b482c597ffe103c8919afaae9c34edabc7a064927e8a",
+            "diagnostics": 0
+        },
+        {
+            "profile": "semantic",
+            "case": "nested-includes-12",
+            "source_bytes": 36,
+            "median_ms": 5.531,
+            "peak_bytes": 77594624,
+            "peak_used_bytes": 4157928,
+            "html_sha256": "c077136f998bb9f873b27628e25974cdca229c566e7352c787979ecc2c35348f",
+            "diagnostics": 0
+        }
+    ]
+}

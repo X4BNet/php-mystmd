@@ -50,6 +50,13 @@ be repeated on the same converter. Rendering copies its input. Diagnostics conta
 `message`, `ruleId`, `severity`, and an optional source `position`. Positions use
 one-based lines and columns, with upstream JavaScript UTF-16 column units.
 
+`RenderResult.ast`, `RenderResult.document.ast`, and the result's JSON `ast` contain
+the resolved working tree passed to the HTML serializer, including expanded
+includes and rendering transforms. The parsed `Document` stays unchanged. Omitting
+resolvers and providing an empty `ResolverSet` produce the same result. This corrects
+the earlier release-candidate behavior where the returned AST depended on whether
+resolvers were configured; retain the parsed document if you need the parsing stage.
+
 Options follow the MyST `extensions`, `markdownit`, and `mdast` groups. For example:
 
 ```php
@@ -59,6 +66,20 @@ $converter = new Converter([
     'html' => ['headingOffset' => 1, 'focusableCode' => true],
 ]);
 ```
+
+HTML defaults to the pinned upstream serializer. Opt into native dropdowns,
+normalized captions and table headers, anchors on labeled blocks, and automatic
+local reference text with:
+
+```php
+$converter = new Converter(['html' => ['profile' => 'semantic']]);
+```
+
+The other accepted profile is `upstream`; unknown values throw during construction.
+Custom node renderers take precedence in both profiles. The semantic profile keeps
+unsupported interactive content readable and reports `html-unsupported` diagnostics.
+It does not execute widgets. See the [feature matrix](docs/compatibility.md#feature-matrix)
+and [transform recipes](docs/extensions.md#transform-recipes).
 
 The default extensions include tables, footnotes, citations, definition lists,
 task lists, colon fences, front matter, block metadata, math, and smart quotes.
@@ -91,5 +112,7 @@ php bin/verify-consumer.php
 
 Normal tests use committed fixtures and require neither Node nor upstream access.
 CI runs minimum and current dependency resolutions on PHP 8.4 and 8.5.
+[Coverage and performance](docs/validation.md) explains the measured coverage gate,
+Xdebug reports, and reproducible benchmarks.
 [Fixture update instructions](docs/fixtures.md) explain the separate reference tools.
 The package is [MIT licensed](LICENSE); see [third-party notices](THIRD_PARTY_NOTICES.md).

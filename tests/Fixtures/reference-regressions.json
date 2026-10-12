@@ -1,0 +1,2984 @@
+{
+  "revision": "807672d850695c2863143571f296327b15f203bd",
+  "cases": [
+    {
+      "title": "Invalid optional numbering",
+      "source": "```{myst}\n:numbering: [\ncontent\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "myst",
+            "options": {
+              "numbering": "["
+            },
+            "value": "content",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "myst",
+                "value": "content"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div class=\"margin\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Transitive footnotes",
+      "source": "Body[^a]\n\n[^a]: A refers to B[^b]\n[^b]: B note",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "a",
+                "label": "a",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "a",
+            "label": "a",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A refers to B",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "footnoteReference",
+                    "identifier": "b",
+                    "label": "b",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "b",
+            "label": "b",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 4,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "B note",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>Body<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup></p>\n<section data-footnotes class=\"footnotes\"><h2 class=\"sr-only\" id=\"footnote-label\">Footnotes</h2>\n<ol>\n<li id=\"user-content-fn-a\">\n<p>A refers to B<sup><a href=\"#user-content-fn-b\" id=\"user-content-fnref-b\" data-footnote-ref aria-describedby=\"footnote-label\">2</a></sup> <a href=\"#user-content-fnref-a\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a></p>\n</li>\n<li id=\"user-content-fn-b\">\n<p>B note <a href=\"#user-content-fnref-b\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a></p>\n</li>\n</ol>\n</section>",
+      "diagnostics": []
+    },
+    {
+      "title": "Self-referencing footnote",
+      "source": "Body[^a]\n\n[^a]: A refers to itself[^a]",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "a",
+                "label": "a",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "a",
+            "label": "a",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A refers to itself",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "footnoteReference",
+                    "identifier": "a",
+                    "label": "a",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>Body<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup></p>\n<section data-footnotes class=\"footnotes\"><h2 class=\"sr-only\" id=\"footnote-label\">Footnotes</h2>\n<ol>\n<li id=\"user-content-fn-a\">\n<p>A refers to itself<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a-2\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup> <a href=\"#user-content-fnref-a\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a> <a href=\"#user-content-fnref-a-2\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩<sup>2</sup></a></p>\n</li>\n</ol>\n</section>",
+      "diagnostics": []
+    },
+    {
+      "title": "Cyclic footnotes",
+      "source": "Body[^a]\n\n[^a]: A refers to B[^b]\n[^b]: B refers to A[^a]",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "a",
+                "label": "a",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "a",
+            "label": "a",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A refers to B",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "footnoteReference",
+                    "identifier": "b",
+                    "label": "b",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "b",
+            "label": "b",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 4,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "B refers to A",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "footnoteReference",
+                    "identifier": "a",
+                    "label": "a",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>Body<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup></p>\n<section data-footnotes class=\"footnotes\"><h2 class=\"sr-only\" id=\"footnote-label\">Footnotes</h2>\n<ol>\n<li id=\"user-content-fn-a\">\n<p>A refers to B<sup><a href=\"#user-content-fn-b\" id=\"user-content-fnref-b\" data-footnote-ref aria-describedby=\"footnote-label\">2</a></sup> <a href=\"#user-content-fnref-a\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a></p>\n</li>\n<li id=\"user-content-fn-b\">\n<p>B refers to A<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a-2\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup> <a href=\"#user-content-fnref-b\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a></p>\n</li>\n</ol>\n</section>",
+      "diagnostics": []
+    },
+    {
+      "title": "Shared footnote",
+      "source": "Body[^a] and B[^b]\n\n[^a]: A refers to B[^b]\n[^b]: B note",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "a",
+                "label": "a",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "text",
+                "value": " and B",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "b",
+                "label": "b",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "a",
+            "label": "a",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "A refers to B",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "footnoteReference",
+                    "identifier": "b",
+                    "label": "b",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "b",
+            "label": "b",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 4,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "B note",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>Body<sup><a href=\"#user-content-fn-a\" id=\"user-content-fnref-a\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup> and B<sup><a href=\"#user-content-fn-b\" id=\"user-content-fnref-b\" data-footnote-ref aria-describedby=\"footnote-label\">2</a></sup></p>\n<section data-footnotes class=\"footnotes\"><h2 class=\"sr-only\" id=\"footnote-label\">Footnotes</h2>\n<ol>\n<li id=\"user-content-fn-a\">\n<p>A refers to B<sup><a href=\"#user-content-fn-b\" id=\"user-content-fnref-b-2\" data-footnote-ref aria-describedby=\"footnote-label\">2</a></sup> <a href=\"#user-content-fnref-a\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a></p>\n</li>\n<li id=\"user-content-fn-b\">\n<p>B note <a href=\"#user-content-fnref-b\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a> <a href=\"#user-content-fnref-b-2\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩<sup>2</sup></a></p>\n</li>\n</ol>\n</section>",
+      "diagnostics": []
+    },
+    {
+      "title": "note class: [one, two]",
+      "source": "```{note} \n---\nclass: [one, two]\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": [
+                "one",
+                "two"
+              ]
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "one,two"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"one,two admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a string for option \"class\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note class: {key: value}",
+      "source": "```{note} \n---\nclass: {key: value}\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": {
+                "key": "value"
+              }
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "[object Object]"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"[object Object] admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a string for option \"class\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note class: null",
+      "source": "```{note} \n---\nclass: null\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": null
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note class: false",
+      "source": "```{note} \n---\nclass: false\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": false
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "false"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"false admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a string for option \"class\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note class: true",
+      "source": "```{note} \n---\nclass: true\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": true
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": ""
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note class: 0",
+      "source": "```{note} \n---\nclass: 0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "0"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"0 admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a string for option \"class\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note class: 0.0",
+      "source": "```{note} \n---\nclass: 0.0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "0"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"0 admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a string for option \"class\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note class: 12",
+      "source": "```{note} \n---\nclass: 12\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": 12
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "12"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"12 admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note class: '0'",
+      "source": "```{note} \n---\nclass: '0'\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": "0"
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "0"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"0 admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note class: ''",
+      "source": "```{note} \n---\nclass: ''\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "class": ""
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "code-block caption: [one, two]",
+      "source": "```{code-block} php\n---\ncaption: [one, two]\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": [
+                "one",
+                "two"
+              ]
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: {key: value}",
+      "source": "```{code-block} php\n---\ncaption: {key: value}\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": {
+                "key": "value"
+              }
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: null",
+      "source": "```{code-block} php\n---\ncaption: null\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": null
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: false",
+      "source": "```{code-block} php\n---\ncaption: false\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": false
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: true",
+      "source": "```{code-block} php\n---\ncaption: true\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": true
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: 0",
+      "source": "```{code-block} php\n---\ncaption: 0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: 0.0",
+      "source": "```{code-block} php\n---\ncaption: 0.0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: 12",
+      "source": "```{code-block} php\n---\ncaption: 12\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": 12
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": [
+        {
+          "message": "content is parsed from non-string value for option \"caption\" (in code-block)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "code-block caption: '0'",
+      "source": "```{code-block} php\n---\ncaption: '0'\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": "0"
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "code",
+                "children": [
+                  {
+                    "type": "code",
+                    "lang": "php",
+                    "value": "body"
+                  },
+                  {
+                    "type": "caption",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "0",
+                            "position": {
+                              "start": {
+                                "line": 2,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 1
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><pre><code class=\"language-php\">body\n</code></pre><figcaption><p>0</p></figcaption></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "code-block caption: ''",
+      "source": "```{code-block} php\n---\ncaption: ''\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "code-block",
+            "args": "php",
+            "options": {
+              "caption": ""
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "code",
+                "lang": "php",
+                "value": "body"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-php\">body\n</code></pre>",
+      "diagnostics": []
+    },
+    {
+      "title": "note open: [one, two]",
+      "source": "```{note} \n---\nopen: [one, two]\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": [
+                "one",
+                "two"
+              ]
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown",
+                "open": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: {key: value}",
+      "source": "```{note} \n---\nopen: {key: value}\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": {
+                "key": "value"
+              }
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown",
+                "open": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: null",
+      "source": "```{note} \n---\nopen: null\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": null
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note open: false",
+      "source": "```{note} \n---\nopen: false\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": false
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note open: true",
+      "source": "```{note} \n---\nopen: true\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": true
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown",
+                "open": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "note open: 0",
+      "source": "```{note} \n---\nopen: 0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: 0.0",
+      "source": "```{note} \n---\nopen: 0.0\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": 0
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: 12",
+      "source": "```{note} \n---\nopen: 12\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": 12
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown",
+                "open": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: '0'",
+      "source": "```{note} \n---\nopen: '0'\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": "0"
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "dropdown",
+                "open": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"dropdown admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": [
+        {
+          "message": "value is not a boolean for option \"open\" (in note)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "note open: ''",
+      "source": "```{note} \n---\nopen: ''\n---\nbody\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "options": {
+              "open": ""
+            },
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "body",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><p>body</p></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: [one, two]",
+      "source": "```{include} file.md\n---\nstart-line: [one, two]\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": [
+                "one",
+                "two"
+              ]
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": [
+        {
+          "message": "number not provided for option \"start-line\" (in include)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "include start-line: {key: value}",
+      "source": "```{include} file.md\n---\nstart-line: {key: value}\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": {
+                "key": "value"
+              }
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": [
+        {
+          "message": "number not provided for option \"start-line\" (in include)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "include start-line: null",
+      "source": "```{include} file.md\n---\nstart-line: null\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": null
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: false",
+      "source": "```{include} file.md\n---\nstart-line: false\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": false
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "lines": [
+                    [
+                      1
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: true",
+      "source": "```{include} file.md\n---\nstart-line: true\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": true
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": [
+        {
+          "message": "number not provided for option \"start-line\" (in include)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "include start-line: 0",
+      "source": "```{include} file.md\n---\nstart-line: 0\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": 0
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "lines": [
+                    [
+                      1
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: 0.0",
+      "source": "```{include} file.md\n---\nstart-line: 0.0\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": 0
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "lines": [
+                    [
+                      1
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: 12",
+      "source": "```{include} file.md\n---\nstart-line: 12\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": 12
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "lines": [
+                    [
+                      13
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: '0'",
+      "source": "```{include} file.md\n---\nstart-line: '0'\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": "0"
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "lines": [
+                    [
+                      1
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "include start-line: ''",
+      "source": "```{include} file.md\n---\nstart-line: ''\n---\n```",
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "file.md",
+            "options": {
+              "start-line": ""
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "file.md",
+                "literal": false,
+                "lang": "markdown"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"file.md\"></div>",
+      "diagnostics": []
+    }
+  ]
+}

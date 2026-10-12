@@ -32,6 +32,12 @@
     "test": "@test:paratest",
     "test:phpunit": "php -d xdebug.mode=off vendor/bin/phpunit --no-progress",
     "test:paratest": "php -d xdebug.mode=off vendor/bin/paratest --processes=4 --no-progress",
+    "test:coverage": [
+      "Composer\\Config::disableProcessTimeout",
+      "php -d opcache.enable_cli=0 -d auto_prepend_file=bin/coverage-filter.php -d xdebug.mode=coverage -d memory_limit=1G vendor/bin/phpunit --no-progress --path-coverage --coverage-clover build/coverage/clover.xml --coverage-html build/coverage/html"
+    ],
+    "coverage:check": "php bin/check-code-coverage.php",
+    "benchmark": "php -d xdebug.mode=off bin/benchmark.php",
     "phpstan": "php vendor/bin/phpstan analyse --no-progress --memory-limit=512M",
     "phan": "php vendor/bin/phan --allow-polyfill-parser --no-progress-bar --no-color"
   },
