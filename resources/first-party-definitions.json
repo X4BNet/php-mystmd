@@ -1,0 +1,447 @@
+{
+  "button": {
+    "directives": [],
+    "roles": [
+      {
+        "name": "button",
+        "doc": "Button element with an action to navigate to internal or external links. See [](#ui:buttons).",
+        "body": {
+          "type": "string",
+          "doc": "The body of the button.",
+          "required": true
+        }
+      }
+    ]
+  },
+  "card": {
+    "directives": [
+      {
+        "name": "card",
+        "alias": [
+          "grid-item-card"
+        ],
+        "arg": {
+          "type": "myst",
+          "doc": "The title of the card, usually shown as bolded text at the top of the card."
+        },
+        "options": {
+          "url": {
+            "type": "string",
+            "alias": [
+              "link"
+            ],
+            "doc": "Turns the card into a link, can be internal or external."
+          },
+          "header": {
+            "type": "myst",
+            "doc": "Adds a header to the card."
+          },
+          "footer": {
+            "type": "myst",
+            "doc": "Adds a footer to the card."
+          }
+        },
+        "body": {
+          "type": "myst",
+          "required": true,
+          "doc": "Main body content of the card."
+        }
+      }
+    ],
+    "roles": []
+  },
+  "exercise": {
+    "directives": [
+      {
+        "name": "exercise",
+        "alias": [
+          "exercise-start"
+        ],
+        "arg": {
+          "type": "myst"
+        },
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the exercise with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the exercise to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific exercise"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the exercise number"
+          },
+          "nonumber": {
+            "type": "boolean",
+            "doc": "Legacy flag to disable numbering of exercises; equivalent to `enumerated: false`"
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        },
+        "body": {
+          "type": "myst"
+        }
+      },
+      {
+        "name": "exercise-end"
+      },
+      {
+        "name": "solution",
+        "alias": [
+          "solution-start"
+        ],
+        "arg": {
+          "type": "string",
+          "required": true
+        },
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the solution with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the solution to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific solution"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the solution number"
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        },
+        "body": {
+          "type": "myst"
+        }
+      },
+      {
+        "name": "solution-end"
+      }
+    ],
+    "roles": []
+  },
+  "grid": {
+    "directives": [
+      {
+        "name": "grid",
+        "arg": {
+          "type": "string"
+        },
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the grid with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the grid to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific grid"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the grid number"
+          }
+        },
+        "body": {
+          "type": "myst",
+          "required": true
+        }
+      },
+      {
+        "name": "grid-item",
+        "options": {
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ]
+          },
+          "class": {
+            "type": "string"
+          },
+          "columns": {
+            "type": "number"
+          }
+        },
+        "body": {
+          "type": "myst",
+          "required": true
+        }
+      }
+    ],
+    "roles": []
+  },
+  "icon": {
+    "directives": [],
+    "roles": [
+      {
+        "name": "icon:oct",
+        "alias": [
+          "icon:mrg",
+          "icon:mol",
+          "icon:mrd",
+          "icon:msp",
+          "icon:mtt",
+          "icon:fab",
+          "icon:far",
+          "icon:fas",
+          "octicon",
+          "fas",
+          "far",
+          "fab",
+          "material-twotone",
+          "material-sharp",
+          "material-regular",
+          "material-round",
+          "material-outline"
+        ],
+        "body": {
+          "type": "string",
+          "required": true
+        }
+      }
+    ]
+  },
+  "proof": {
+    "directives": [
+      {
+        "name": "proof",
+        "alias": [
+          "prf:proof",
+          "proof:proof",
+          "prf:axiom",
+          "proof:axiom",
+          "prf:lemma",
+          "proof:lemma",
+          "prf:definition",
+          "proof:definition",
+          "prf:criterion",
+          "proof:criterion",
+          "prf:remark",
+          "proof:remark",
+          "prf:conjecture",
+          "proof:conjecture",
+          "prf:corollary",
+          "proof:corollary",
+          "prf:algorithm",
+          "proof:algorithm",
+          "prf:example",
+          "proof:example",
+          "prf:property",
+          "proof:property",
+          "prf:observation",
+          "proof:observation",
+          "prf:proposition",
+          "proof:proposition",
+          "prf:assumption",
+          "proof:assumption",
+          "prf:theorem",
+          "proof:theorem"
+        ],
+        "arg": {
+          "type": "myst"
+        },
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the proof with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the proof to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific proof"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the proof number"
+          },
+          "nonumber": {
+            "type": "boolean",
+            "doc": "Legacy flag to disable numbering of proofs; equivalent to `enumerated: false`"
+          }
+        },
+        "body": {
+          "type": "myst",
+          "required": true
+        }
+      }
+    ],
+    "roles": []
+  },
+  "reactive": {
+    "directives": [
+      {
+        "name": "r:var",
+        "options": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "value": {
+            "type": "string"
+          },
+          "rValue": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "roles": [
+      {
+        "name": "r:range",
+        "alias": [
+          "r:dynamic",
+          "r:display"
+        ],
+        "body": {
+          "type": "string",
+          "required": true
+        }
+      }
+    ]
+  },
+  "tabs": {
+    "directives": [
+      {
+        "name": "tab-set",
+        "alias": [
+          "tabSet"
+        ],
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the tab-set with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the tab-set to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific tab-set"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the tab-set number"
+          }
+        },
+        "body": {
+          "type": "myst"
+        }
+      },
+      {
+        "name": "tab-item",
+        "alias": [
+          "tabItem",
+          "tab"
+        ],
+        "arg": {
+          "type": "string"
+        },
+        "options": {
+          "class": {
+            "type": "string",
+            "doc": "Annotate the tab-item with a set of space-delimited class names."
+          },
+          "label": {
+            "type": "string",
+            "alias": [
+              "name"
+            ],
+            "doc": "Label the tab-item to be cross-referenced or explicitly linked to."
+          },
+          "enumerated": {
+            "type": "boolean",
+            "alias": [
+              "numbered"
+            ],
+            "doc": "Turn on/off the numbering for the specific tab-item"
+          },
+          "enumerator": {
+            "type": "string",
+            "alias": [
+              "number"
+            ],
+            "doc": "Explicitly set the tab-item number"
+          },
+          "sync": {
+            "type": "string"
+          },
+          "selected": {
+            "type": "boolean"
+          }
+        },
+        "body": {
+          "type": "myst"
+        }
+      }
+    ],
+    "roles": []
+  }
+}

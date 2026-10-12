@@ -1,0 +1,1596 @@
+{
+  "directives": [
+    {
+      "name": "admonition",
+      "doc": "Callouts, or \"admonitions\", highlight a particular block of text that exists slightly apart from the narrative of your page, such as a note or a warning. \n\n The admonition kind can be determined by the directive name used (e.g. `:::{tip}` or `:::{note}`).",
+      "alias": [
+        "attention",
+        "caution",
+        "danger",
+        "error",
+        "important",
+        "hint",
+        "note",
+        "seealso",
+        "tip",
+        "warning"
+      ],
+      "arg": {
+        "type": "myst",
+        "doc": "The optional title of the admonition, if not supplied the admonition kind will be used.\n\nNote that the argument parsing is different from Sphinx, which does not allow named admonitions to have custom titles."
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "CSS classes to add to your admonition. Special classes include:\n\n- `dropdown`: turns the admonition into a `<details>` html element\n- `simple`: an admonition with \"simple\" styles\n- the name of an admonition, the first valid admonition name encountered will be used (e.g. `tip`). Note that if you provide conflicting class names, the first valid admonition name will be used."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the admonition to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific admonition"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the admonition number"
+        },
+        "icon": {
+          "type": "boolean",
+          "doc": "Setting icon to false will hide the icon."
+        },
+        "open": {
+          "type": "boolean",
+          "doc": "Turn the admonition into a dropdown, if it isn't already, and set the open state."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "doc": "The body of the admonition. If there is no title and the body starts with bold text or a heading, that content will be used as the admonition title."
+      }
+    },
+    {
+      "name": "bibliography",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the bibliography with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the bibliography to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific bibliography"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the bibliography number"
+        },
+        "filter": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "csv-table",
+      "doc": "The \"csv-table\" directive is used to create a table from CSV (comma-separated values) data.",
+      "arg": {
+        "type": "myst",
+        "doc": "An optional table caption"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "CSS classes to add to your table. Special classes include:\n\n- `full-width`: changes the table environment to cover two columns in LaTeX"
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the CSV table to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific CSV table"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the CSV table number"
+        },
+        "header": {
+          "type": "string",
+          "doc": "Supplemental data for the table header, added independently of and before any header-rows from the main CSV data. Must use the same CSV format as the main CSV data."
+        },
+        "header-rows": {
+          "type": "number",
+          "doc": "The number of rows of CSV data to use in the table header. Defaults to 0."
+        },
+        "align": {
+          "type": "string"
+        },
+        "delim": {
+          "type": "string",
+          "doc": "The character used to separate data fields. The special values \"tab\" and \"space\" are converted to the respective whitespace characters. Defaults to \",\" (comma)"
+        },
+        "keepspace": {
+          "type": "boolean",
+          "doc": "Treat whitespace immediately following the delimiter as significant. The default is to ignore such whitespace."
+        },
+        "quote": {
+          "type": "string",
+          "doc": "The character used to quote fields containing special characters, such as the delimiter, quotes, or new-line characters. Must be a single character, defaults to `\"` (a double quote)\\\nFor example, `First cell, \"These commas, for example, are escaped\", Next cell`"
+        },
+        "escape": {
+          "type": "string",
+          "doc": "A character used to escape the delimiter or quote characters from the CSV parser. Must be a single character, defaults to `\"` (a double quote) default is a double quote\\\nFor example, `First cell, \"These quotes\"\", for example, are escaped\", Next cell`"
+        }
+      },
+      "body": {
+        "type": "string",
+        "doc": "The CSV content",
+        "required": true
+      }
+    },
+    {
+      "name": "code",
+      "doc": "A code-block environment with a language as the argument, and options for highlighting, showing line numbers, and an optional filename.",
+      "alias": [
+        "code-block",
+        "sourcecode"
+      ],
+      "arg": {
+        "type": "string",
+        "doc": "Code language, for example `python` or `typescript`"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the code with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the code to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific code"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the code number"
+        },
+        "caption": {
+          "type": "myst",
+          "doc": "A parsed caption for the code block."
+        },
+        "linenos": {
+          "type": "boolean",
+          "doc": "Show line numbers"
+        },
+        "lineno-start": {
+          "type": "number",
+          "doc": "Start line numbering from a particular value, default is 1. If present, line numbering is activated."
+        },
+        "number-lines": {
+          "type": "number",
+          "doc": "Alternative for \"lineno-start\", turns on line numbering and can be an integer that is the start of the line numbering."
+        },
+        "emphasize-lines": {
+          "type": "string",
+          "doc": "Emphasize particular lines (comma-separated numbers which can include ranges), e.g. \"3,5,7-9\""
+        },
+        "filename": {
+          "type": "string",
+          "doc": "Show the filename in addition to the rendered code. The `include` directive will use the filename by default, to turn off this default set the filename to `false`."
+        }
+      },
+      "body": {
+        "type": "string",
+        "doc": "The raw code to display for the code block."
+      }
+    },
+    {
+      "name": "code-cell",
+      "doc": "An executable code cell",
+      "arg": {
+        "type": "string",
+        "doc": "Language for execution and display, for example `python`. It will default to the language of the notebook or containing markdown file."
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the code-cell with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the code-cell to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific code-cell"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the code-cell number"
+        },
+        "caption": {
+          "type": "myst",
+          "doc": "A parsed caption for the code output."
+        },
+        "linenos": {
+          "type": "boolean",
+          "doc": "Show line numbers"
+        },
+        "lineno-start": {
+          "type": "number",
+          "doc": "Start line numbering from a particular value, default is 1. If present, line numbering is activated."
+        },
+        "number-lines": {
+          "type": "number",
+          "doc": "Alternative for \"lineno-start\", turns on line numbering and can be an integer that is the start of the line numbering."
+        },
+        "emphasize-lines": {
+          "type": "string",
+          "doc": "Emphasize particular lines (comma-separated numbers which can include ranges), e.g. \"3,5,7-9\""
+        },
+        "filename": {
+          "type": "string",
+          "doc": "Show the filename in addition to the rendered code. The `include` directive will use the filename by default, to turn off this default set the filename to `false`."
+        },
+        "tags": {
+          "type": "string",
+          "alias": [
+            "tag"
+          ],
+          "doc": "A comma-separated list of tags to add to the cell, for example, `remove-input` or `hide-cell`."
+        }
+      },
+      "body": {
+        "type": "string",
+        "doc": "The code to be executed and displayed."
+      }
+    },
+    {
+      "name": "dropdown",
+      "arg": {
+        "type": "myst"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the dropdown with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the dropdown to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific dropdown"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the dropdown number"
+        },
+        "open": {
+          "type": "boolean",
+          "doc": "When true, the dropdown starts open."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "embed",
+      "doc": "The embed directive allows you to duplicate content from another part of your project. This can also be done through the figure directive.",
+      "arg": {
+        "type": "string",
+        "doc": "The label of the node that you are embedding.",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the embed with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the embed to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific embed"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the embed number"
+        },
+        "remove-input": {
+          "type": "boolean",
+          "doc": "If embedding a Jupyter Notebook cell, remove the input of the cell."
+        },
+        "remove-output": {
+          "type": "boolean",
+          "doc": "If embedding a Jupyter Notebook cell, remove the output of the cell."
+        }
+      }
+    },
+    {
+      "name": "blockquote",
+      "alias": [
+        "epigraph",
+        "pull-quote"
+      ],
+      "doc": "Block quotes are used to indicate that the enclosed content forms an extended quotation. They may be followed by an inscription or attribution formed of a paragraph beginning with `--`, `---`, or an em-dash.",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "CSS classes to add to your blockquote. Special classes include:\n\n- `pull-quote`: used for a blockquote node which should attract attention\n- `epigraph`: used for a blockquote node that are usually found at the beginning of a document"
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the blockquote to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific blockquote"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the blockquote number"
+        }
+      },
+      "body": {
+        "type": "myst",
+        "doc": "The body of the quote, which may contain a special attribution paragraph that is turned into a caption"
+      }
+    },
+    {
+      "name": "figure",
+      "arg": {
+        "type": "string",
+        "doc": "The filename of an image (e.g. `my-fig.png`), or an ID of a Jupyter Notebook cell (e.g. `#my-cell`)."
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "alias": [
+            "figclass"
+          ],
+          "doc": "CSS classes to add to your figure. Special classes include:\n\n- `full-width`: changes the figure environment to cover two columns in LaTeX"
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the figure to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific figure"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the figure number"
+        },
+        "height": {
+          "type": "string",
+          "doc": "The figure height, in CSS units, for example `4em` or `300px`.",
+          "alias": [
+            "h"
+          ]
+        },
+        "width": {
+          "type": "string",
+          "alias": [
+            "w",
+            "figwidth"
+          ],
+          "doc": "The figure width, in CSS units, for example `50%` or `300px`."
+        },
+        "alt": {
+          "type": "string",
+          "doc": "Alternative text for the image"
+        },
+        "align": {
+          "type": "string",
+          "doc": "The alignment of the image in the figure. Choose one of `left`, `center` or `right`"
+        },
+        "remove-input": {
+          "type": "boolean",
+          "doc": "If the argument is a notebook cell, use this flag to remove the input code from the cell."
+        },
+        "remove-output": {
+          "type": "boolean",
+          "doc": "If the argument is a notebook cell, use this flag to remove the output from the cell."
+        },
+        "placeholder": {
+          "type": "string",
+          "doc": "A placeholder image when using a notebook cell as the figure contents. This will be shown in place of the Jupyter output until an execution environment is attached. It will also be used in static outputs, such as a PDF output."
+        },
+        "no-subfigures": {
+          "type": "boolean",
+          "doc": "Disallow implicit subfigure creation from child nodes",
+          "alias": [
+            "no-subfig",
+            "no-subfigure"
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "doc": "Override the figures \"kind\", which changes the enumeration to start counting independently for that kind. For example, `kind: \"example\"`. The default enumeration and referencing will be the capitalized `kind` followed by a number (e.g. \"Example 1\")."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "doc": "If an argument is provided to the figure directive, the body will be the figure caption. You may also omit the figure directive argument and provide images in the body of the figure, these will be parsed into sub figures."
+      }
+    },
+    {
+      "name": "iframe",
+      "arg": {
+        "type": "string",
+        "doc": "The URL source (`src`) of the HTML iframe element.",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the iframe with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the iframe to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific iframe"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the iframe number"
+        },
+        "width": {
+          "type": "string",
+          "doc": "The iframe width, in CSS units, for example `50%` or `300px`."
+        },
+        "align": {
+          "type": "string",
+          "doc": "The alignment of the iframe in the page. Choose one of `left`, `center` or `right`"
+        },
+        "title": {
+          "type": "string",
+          "doc": "The title attribute for the iframe element, describing its content for accessibility."
+        },
+        "placeholder": {
+          "type": "string",
+          "doc": "A placeholder image for the iframe in static exports."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "doc": "If provided, this will be the iframe caption."
+      }
+    },
+    {
+      "name": "image",
+      "arg": {
+        "type": "string",
+        "doc": "The filename of an image (e.g. `my-fig.png`).",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the image with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the image to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific image"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the image number"
+        },
+        "height": {
+          "type": "string",
+          "doc": "The image height, in CSS units, for example `4em` or `300px`.",
+          "alias": [
+            "h"
+          ]
+        },
+        "width": {
+          "type": "string",
+          "alias": [
+            "w"
+          ],
+          "doc": "The image width, in CSS units, for example `50%` or `300px`."
+        },
+        "alt": {
+          "type": "string",
+          "doc": "Alternative text for the image"
+        },
+        "align": {
+          "type": "string",
+          "doc": "The alignment of the image. Choose one of `left`, `center` or `right`"
+        },
+        "title": {
+          "type": "string",
+          "doc": "Title text for the image"
+        }
+      }
+    },
+    {
+      "name": "include",
+      "alias": [
+        "literalinclude"
+      ],
+      "doc": "Allows you to include the source or parsed version of a separate file into your document tree.",
+      "arg": {
+        "type": "string",
+        "doc": "The file path, which is relative to the file from which it was referenced.",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the include with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the include to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific include"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the include number"
+        },
+        "literal": {
+          "type": "boolean",
+          "doc": "Flag the include block as literal, and show the contents as a code block. This can also be set automatically by setting the `language` or using the `literalinclude` directive."
+        },
+        "lang": {
+          "type": "string",
+          "doc": "The language of the code to be highlighted as. If set, this automatically changes an `include` into a `literalinclude`.",
+          "alias": [
+            "language",
+            "code"
+          ]
+        },
+        "caption": {
+          "type": "myst",
+          "doc": "A parsed caption for the code block."
+        },
+        "linenos": {
+          "type": "boolean",
+          "doc": "Show line numbers"
+        },
+        "lineno-start": {
+          "type": "number",
+          "doc": "Start line numbering from a particular value, default is 1. If present, line numbering is activated."
+        },
+        "number-lines": {
+          "type": "number",
+          "doc": "Alternative for \"lineno-start\", turns on line numbering and can be an integer that is the start of the line numbering."
+        },
+        "emphasize-lines": {
+          "type": "string",
+          "doc": "Emphasize particular lines (comma-separated numbers which can include ranges), e.g. \"3,5,7-9\""
+        },
+        "filename": {
+          "type": "string",
+          "doc": "Show the filename in addition to the rendered code. The `include` directive will use the filename by default, to turn off this default set the filename to `false`."
+        },
+        "start-line": {
+          "type": "number",
+          "doc": "Only the content starting from this line will be included. The first line has index 0 and negative values count from the end."
+        },
+        "start-at": {
+          "type": "string",
+          "doc": "Only the content after and including the first occurrence of the specified text in the external data file will be included."
+        },
+        "start-after": {
+          "type": "string",
+          "doc": "Only the content after the first occurrence of the specified text in the external data file will be included."
+        },
+        "end-line": {
+          "type": "number",
+          "doc": "Only the content up to (but excluding) this line will be included."
+        },
+        "end-at": {
+          "type": "string",
+          "doc": "Only the content up to and including the first occurrence of the specified text in the external data file (but after any start-after text) will be included."
+        },
+        "end-before": {
+          "type": "string",
+          "doc": "Only the content before the first occurrence of the specified text in the external data file (but after any start-after text) will be included."
+        },
+        "lines": {
+          "type": "string",
+          "doc": "Specify exactly which lines to include from the original file, starting at 1. For example, `1,3,5-10,20-` includes the lines 1, 3, 5 to 10 and lines 20 to the last line of the original file."
+        },
+        "lineno-match": {
+          "type": "boolean",
+          "doc": "Display the original line numbers, correct only when the selection consists of contiguous lines."
+        }
+      }
+    },
+    {
+      "name": "index",
+      "arg": {
+        "type": "string"
+      },
+      "options": {
+        "single": {
+          "type": "string"
+        },
+        "pair": {
+          "type": "string"
+        },
+        "triple": {
+          "type": "string"
+        },
+        "see": {
+          "type": "string"
+        },
+        "seealso": {
+          "type": "string",
+          "alias": [
+            "seeAlso",
+            "see-also"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ]
+        }
+      },
+      "body": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "show-index",
+      "alias": [
+        "genindex"
+      ],
+      "arg": {
+        "type": "myst",
+        "doc": "Heading to be included in index block"
+      }
+    },
+    {
+      "name": "table",
+      "arg": {
+        "type": "myst",
+        "doc": "An optional table caption"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "CSS classes to add to your table. Special classes include:\n\n- `full-width`: changes the table environment to cover two columns in LaTeX"
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the table to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific table"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the table number"
+        },
+        "align": {
+          "type": "string"
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "list-table",
+      "arg": {
+        "type": "myst",
+        "doc": "An optional table caption"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "CSS classes to add to your table. Special classes include:\n\n- `full-width`: changes the table environment to cover two columns in LaTeX"
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the list table to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific list table"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the list table number"
+        },
+        "header-rows": {
+          "type": "number"
+        },
+        "align": {
+          "type": "string"
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "aside",
+      "alias": [
+        "margin",
+        "sidebar",
+        "topic"
+      ],
+      "arg": {
+        "type": "myst",
+        "doc": "An optional title"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the aside with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the aside to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific aside"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the aside number"
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "glossary",
+      "body": {
+        "type": "myst",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the glossary with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the glossary to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific glossary"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the glossary number"
+        }
+      }
+    },
+    {
+      "name": "math",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the math with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the math to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific math"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the math number"
+        },
+        "typst": {
+          "type": "string",
+          "doc": "Typst-specific math content. If not provided, LaTeX content will be converted to Typst."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "mdast",
+      "arg": {
+        "type": "string",
+        "required": true
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the mdast with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the mdast to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific mdast"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the mdast number"
+        }
+      }
+    },
+    {
+      "name": "mermaid",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the mermaid with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the mermaid to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific mermaid"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the mermaid number"
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "myst",
+      "doc": "Demonstrate some MyST code in an editable code block that displays its output/result interactively. Limited to built-in functionality, as parsing and rendering is done in the browser without access to plugin code or project configuration.",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the myst with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the myst to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific myst"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the myst number"
+        },
+        "numbering": {
+          "type": "string"
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "raw",
+      "doc": "Allows you to include non-markdown text in your document. If the argument \"latex\" is provided, the text will be parsed as latex; otherwise, it will be included as raw text.",
+      "arg": {
+        "type": "string",
+        "doc": "Format of directive content - for now, only \"latex\" is valid"
+      },
+      "body": {
+        "type": "string",
+        "doc": "Raw content to be parsed"
+      }
+    },
+    {
+      "name": "raw:latex",
+      "alias": [
+        "raw:tex"
+      ],
+      "doc": "Allows you to include tex in your document that will only be included in tex exports",
+      "body": {
+        "type": "string",
+        "doc": "Raw tex content"
+      }
+    },
+    {
+      "name": "raw:typst",
+      "alias": [
+        "raw:typ"
+      ],
+      "doc": "Allows you to include typst in your document that will only be included in typst exports",
+      "body": {
+        "type": "string",
+        "doc": "Raw typst content"
+      }
+    },
+    {
+      "name": "div",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the div with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the div to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific div"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the div number"
+        }
+      },
+      "body": {
+        "type": "myst"
+      }
+    },
+    {
+      "name": "toc",
+      "doc": "Inserts table of contents in the page. This may be for every page of the project, children of the current page, headings on the current page, or headings in the current section.",
+      "alias": [
+        "tableofcontents",
+        "table-of-contents",
+        "toctree",
+        "contents"
+      ],
+      "arg": {
+        "type": "myst",
+        "doc": "Heading to be included with table of contents"
+      },
+      "options": {
+        "context": {
+          "type": "string",
+          "doc": "Table of Contents context; one of project, children, page, or section",
+          "alias": [
+            "kind"
+          ]
+        },
+        "depth": {
+          "type": "number",
+          "doc": "Number of levels to include in Table of Contents; by default, all levels will be included",
+          "alias": [
+            "maxdepth"
+          ]
+        },
+        "class": {
+          "type": "string",
+          "doc": "Annotate the toc with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the toc to be cross-referenced or explicitly linked to."
+        },
+        "enumerated": {
+          "type": "boolean",
+          "alias": [
+            "numbered"
+          ],
+          "doc": "Turn on/off the numbering for the specific toc"
+        },
+        "enumerator": {
+          "type": "string",
+          "alias": [
+            "number"
+          ],
+          "doc": "Explicitly set the toc number"
+        }
+      }
+    },
+    {
+      "name": "anywidget",
+      "doc": "Embed a MyST Widget (AnyWidget) component with data in the body",
+      "arg": {
+        "type": "string",
+        "required": true,
+        "doc": "Path or URL to the ESM JS module for the widget"
+      },
+      "options": {
+        "class": {
+          "type": "string",
+          "required": false,
+          "doc": "Annotate the anywidget with a set of space-delimited class names."
+        },
+        "css": {
+          "type": "string",
+          "required": false,
+          "doc": "Path or URL to a CSS file"
+        }
+      },
+      "body": {
+        "doc": "JSON5 (or JSON) object with props to pass down to the component",
+        "type": "string",
+        "required": false
+      }
+    }
+  ],
+  "roles": [
+    {
+      "name": "span",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the span with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the span to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst"
+      }
+    },
+    {
+      "name": "abbreviation",
+      "alias": [
+        "abbr"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the abbreviation with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the abbreviation to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "chemicalFormula",
+      "alias": [
+        "chem"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the chemicalFormula with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the chemicalFormula to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "cite",
+      "alias": [
+        "cite:p",
+        "cite:t",
+        "cite:ps",
+        "cite:ts",
+        "cite:ct",
+        "cite:cts",
+        "cite:alp",
+        "cite:alps",
+        "cite:label",
+        "cite:labelpar",
+        "cite:year",
+        "cite:yearpar",
+        "cite:author",
+        "cite:authors",
+        "cite:authorpar",
+        "cite:authorpars",
+        "cite:cauthor",
+        "cite:cauthors"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the cite with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the cite to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "delete",
+      "alias": [
+        "del",
+        "strike"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the delete with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the delete to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "math",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the math with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the math to be cross-referenced or explicitly linked to."
+        },
+        "typst": {
+          "type": "string",
+          "doc": "Typst-specific math content. If not provided, LaTeX content will be converted to Typst."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "ref",
+      "alias": [
+        "eq",
+        "numref",
+        "prf:ref",
+        "proof:ref"
+      ],
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "doc",
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "download",
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "index",
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "term",
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "si",
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "eval",
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the eval with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the eval to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "smallcaps",
+      "alias": [
+        "sc"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the smallcaps with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the smallcaps to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "subscript",
+      "alias": [
+        "sub"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the subscript with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the subscript to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "superscript",
+      "alias": [
+        "sup"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the superscript with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the superscript to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "underline",
+      "alias": [
+        "u"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the underline with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the underline to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "myst",
+        "required": true
+      }
+    },
+    {
+      "name": "keyboard",
+      "doc": "The keyboard role denote textual user input from a keyboard, such as \"Ctrl\" + \"Space\".",
+      "alias": [
+        "kbd"
+      ],
+      "options": {
+        "class": {
+          "type": "string",
+          "doc": "Annotate the keyboard with a set of space-delimited class names."
+        },
+        "label": {
+          "type": "string",
+          "alias": [
+            "name"
+          ],
+          "doc": "Label the keyboard to be cross-referenced or explicitly linked to."
+        }
+      },
+      "body": {
+        "type": "string",
+        "required": true
+      }
+    },
+    {
+      "name": "raw:latex",
+      "alias": [
+        "raw:tex"
+      ],
+      "doc": "Allows you to include tex in your document that will only be included in tex exports",
+      "body": {
+        "type": "string",
+        "doc": "Raw tex content"
+      }
+    },
+    {
+      "name": "raw:typst",
+      "alias": [
+        "raw:typ"
+      ],
+      "doc": "Allows you to include typst in your document that will only be included in typst exports",
+      "body": {
+        "type": "string",
+        "doc": "Raw typst content"
+      }
+    }
+  ]
+}

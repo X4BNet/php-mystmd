@@ -1,0 +1,3590 @@
+{
+  "revision": "807672d850695c2863143571f296327b15f203bd",
+  "cases": [
+    {
+      "title": "CSV with header and multiline quoted fields",
+      "source": "```{csv-table} Caption\n:header: One,Two\n:header-rows: 1\n\na,b\n\"first\nsecond\", \"a, b\"\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "csv-table",
+            "args": "Caption",
+            "options": {
+              "header": "One,Two",
+              "header-rows": "1"
+            },
+            "value": "a,b\n\"first\nsecond\", \"a, b\"",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 8,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "caption",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Caption",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 1
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "table",
+                    "children": [
+                      {
+                        "type": "tableRow",
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "One",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Two",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tableRow",
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "a",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "b",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tableRow",
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "first\nsecond",
+                                "position": {
+                                  "start": {
+                                    "line": 3,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "a, b",
+                                "position": {
+                                  "start": {
+                                    "line": 3,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><figcaption><p>Caption</p></figcaption><table>\n<thead>\n<tr>\n<th>One</th>\n<th>Two</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>a</td>\n<td>b</td>\n</tr>\n<tr>\n<td>first\nsecond</td>\n<td>a, b</td>\n</tr>\n</tbody>\n</table></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "CSV custom dialect",
+      "source": "```{csv-table}\n:delim: ;\n:quote: !\n:escape: \\\n\n!a; b!;c\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "csv-table",
+            "options": {
+              "delim": ";",
+              "quote": "!",
+              "escape": "\\"
+            },
+            "value": "!a; b!;c",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 7,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": [
+                      {
+                        "type": "tableRow",
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "a; b",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "c",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n<thead>\n<tr>\n<th>a; b</th>\n<th>c</th>\n</tr>\n</thead>\n</table></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "CSV invalid row widths",
+      "source": "```{csv-table}\na,b\nc\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "csv-table",
+            "value": "a,b\nc",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n</table></figure>",
+      "diagnostics": [
+        {
+          "message": "csv-table directive body must be valid CSV-formatted MyST",
+          "ruleId": "directive-body-correct",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "CSV unterminated quote",
+      "source": "```{csv-table}\na,\"b\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "csv-table",
+            "value": "a,\"b",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n</table></figure>",
+      "diagnostics": [
+        {
+          "message": "csv-table directive body must be valid CSV-formatted MyST",
+          "ruleId": "directive-body-correct",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "CSV invalid header",
+      "source": "```{csv-table}\n:header: \"unclosed\n\na,b\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "csv-table",
+            "options": {
+              "header": "\"unclosed"
+            },
+            "value": "a,b",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": [
+                      {
+                        "type": "tableRow",
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "a",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "b",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n<thead>\n<tr>\n<th>a</th>\n<th>b</th>\n</tr>\n</thead>\n</table></figure>",
+      "diagnostics": [
+        {
+          "message": "csv-table directive header must be valid CSV-formatted MyST",
+          "ruleId": "directive-options-correct",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "List table invalid body",
+      "source": "```{list-table}\ntext\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "list-table",
+            "value": "text",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n</table></figure>",
+      "diagnostics": [
+        {
+          "message": "list-table directive must have one list as body",
+          "ruleId": "directive-body-correct",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "List table invalid nesting",
+      "source": "```{list-table}\n* text\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "list-table",
+            "value": "* text",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "table",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><table>\n</table></figure>",
+      "diagnostics": [
+        {
+          "message": "list-table directive must have a list of lists",
+          "ruleId": "directive-body-correct",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "Table preserves multiple blocks",
+      "source": "```{table} **Caption**\n|a|b|\n|-|-|\n|1|2|\n\nExtra paragraph\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "table",
+            "args": "**Caption**",
+            "value": "|a|b|\n|-|-|\n|1|2|\n\nExtra paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 7,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "table",
+                "children": [
+                  {
+                    "type": "caption",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "children": [
+                          {
+                            "type": "strong",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Caption",
+                                "position": {
+                                  "start": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "table",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "tableRow",
+                        "position": {
+                          "start": {
+                            "line": 2,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "position": {
+                              "start": {
+                                "line": 2,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "a",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "header": true,
+                            "position": {
+                              "start": {
+                                "line": 2,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "b",
+                                "position": {
+                                  "start": {
+                                    "line": 2,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 2,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "tableRow",
+                        "position": {
+                          "start": {
+                            "line": 4,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "tableCell",
+                            "position": {
+                              "start": {
+                                "line": 4,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 4,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "1",
+                                "position": {
+                                  "start": {
+                                    "line": 4,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 4,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "tableCell",
+                            "position": {
+                              "start": {
+                                "line": 4,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 4,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "2",
+                                "position": {
+                                  "start": {
+                                    "line": 4,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 4,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 6,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Extra paragraph",
+                        "position": {
+                          "start": {
+                            "line": 6,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 6,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><figcaption><p><strong>Caption</strong></p></figcaption><table>\n<thead>\n<tr>\n<th>a</th>\n<th>b</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>2</td>\n</tr>\n</tbody>\n</table><p>Extra paragraph</p></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "Nested inline role in argument",
+      "source": "```{note} Text {sub}`2`\nbody\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "```{note} Text ",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "mystRole",
+                "name": "sub",
+                "value": "2",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 16
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 24
+                  }
+                },
+                "children": [
+                  {
+                    "type": "subscript",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "2",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "value": "\nbody",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "code",
+            "lang": "",
+            "value": "",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "<p>```{note} Text <sub>2</sub>\nbody</p>\n<pre><code></code></pre>",
+      "diagnostics": []
+    },
+    {
+      "title": "Widget JSON5",
+      "source": "```{anywidget} widget.js\n:css: style.css\n:class: demo\n\n{message: 'hi', count: 0x10, values: [1,2,], /* comment */}\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "anywidget",
+            "args": "widget.js",
+            "options": {
+              "css": "style.css",
+              "class": "demo"
+            },
+            "value": "{message: 'hi', count: 0x10, values: [1,2,], /* comment */}",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "anywidget",
+                "esm": "widget.js",
+                "model": {
+                  "message": "hi",
+                  "count": 16,
+                  "values": [
+                    1,
+                    2
+                  ]
+                },
+                "css": "style.css",
+                "class": "demo",
+                "id": "C06J7jHNUgQvg85DxgcwB"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Widget without model",
+      "source": "```{anywidget} widget.js\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "anywidget",
+            "args": "widget.js",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "anywidget",
+                "esm": "widget.js",
+                "model": {},
+                "id": "OgYiTBNpfyjuVj3slp_tl"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Widget malformed model",
+      "source": "```{anywidget} widget.js\nnot JSON\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "anywidget",
+            "args": "widget.js",
+            "value": "not JSON",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "anywidget",
+                "esm": "widget.js",
+                "model": {
+                  "error": "Invalid JSON5/JSON supplied."
+                },
+                "id": "HU7BIhaV_YmpxqcYhrUJI"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": [
+        {
+          "message": "Invalid JSON5/JSON supplied.",
+          "ruleId": null,
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "Widget scalar model",
+      "source": "```{anywidget} widget.js\n42\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "anywidget",
+            "args": "widget.js",
+            "value": "42",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "anywidget",
+                "esm": "widget.js",
+                "model": 42,
+                "id": "h4zcE9pw0dYdM51TxG_DP"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": [
+        {
+          "message": "Invalid JSON5/JSON supplied.",
+          "ruleId": null,
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "Malformed directive attributes",
+      "source": "```{note #one #two}\nbody\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirectiveError",
+            "message": "Cannot have more than one ID defined",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div>body</div>",
+      "diagnostics": [
+        {
+          "message": "Error parsing \"note #one #two\" directive: Cannot have more than one ID defined",
+          "ruleId": null,
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "Unknown inline directive attribute",
+      "source": "```{note bare}\nbody\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirectiveError",
+            "message": "No additional bare tokens allowed after the first token",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "body",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div>body</div>",
+      "diagnostics": [
+        {
+          "message": "Error parsing \"note bare\" directive: No additional bare tokens allowed after the first token",
+          "ruleId": null,
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "Figure without argument",
+      "source": "```{figure}\n![a](a.png)\n\nCaption\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "figure",
+            "value": "![a](a.png)\n\nCaption",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "figure",
+                "children": [
+                  {
+                    "type": "image",
+                    "url": "a.png",
+                    "alt": "a",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 4,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Caption",
+                        "position": {
+                          "start": {
+                            "line": 4,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered\"><img src=\"a.png\" alt=\"a\"><p>Caption</p></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "Figure options",
+      "source": "```{figure} #cell\n:kind: example\n:placeholder: p.png\n:no-subfigures:\n:remove-input:\n:class: wide\n\nCaption\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "figure",
+            "args": "#cell",
+            "options": {
+              "kind": "example",
+              "placeholder": "p.png",
+              "no-subfigures": true,
+              "remove-input": true,
+              "class": "wide"
+            },
+            "value": "Caption",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 9,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "example",
+                "children": [
+                  {
+                    "type": "image",
+                    "url": "#cell",
+                    "remove-input": true
+                  },
+                  {
+                    "type": "image",
+                    "placeholder": true,
+                    "url": "p.png"
+                  },
+                  {
+                    "type": "paragraph",
+                    "position": {
+                      "start": {
+                        "line": 8,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Caption",
+                        "position": {
+                          "start": {
+                            "line": 8,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 8,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "class": "wide",
+                "noSubcontainers": true
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered wide\"><img src=\"#cell\"><img src=\"p.png\"><p>Caption</p></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "Quote alias",
+      "source": "```{epigraph}\n:class: custom\n\nQuoted **words**\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "epigraph",
+            "options": {
+              "class": "custom"
+            },
+            "value": "Quoted **words**",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "container",
+                "kind": "quote",
+                "children": [
+                  {
+                    "type": "blockquote",
+                    "children": [
+                      {
+                        "type": "paragraph",
+                        "position": {
+                          "start": {
+                            "line": 4,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Quoted ",
+                            "position": {
+                              "start": {
+                                "line": 4,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 4,
+                                "column": 1
+                              }
+                            }
+                          },
+                          {
+                            "type": "strong",
+                            "position": {
+                              "start": {
+                                "line": 4,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 4,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "words",
+                                "position": {
+                                  "start": {
+                                    "line": 4,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 4,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "class": "custom epigraph"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<figure class=\"numbered custom epigraph\"><blockquote>\n<p>Quoted <strong>words</strong></p>\n</blockquote></figure>",
+      "diagnostics": []
+    },
+    {
+      "title": "Empty div",
+      "source": "```{div}\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "div",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "div"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Raw HTML directive",
+      "source": "```{raw} html\n<b>test</b>\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "raw",
+            "args": "html",
+            "value": "<b>test</b>",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "raw",
+                "lang": "html",
+                "value": "<b>test</b>"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "&#x3C;b>test&#x3C;/b>",
+      "diagnostics": []
+    },
+    {
+      "title": "Raw LaTeX directive",
+      "source": "```{raw:latex}\nTex body\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "raw:latex",
+            "value": "Tex body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "raw",
+                "lang": "tex",
+                "tex": "\nTex body\n"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Raw Typst directive",
+      "source": "```{raw:typ}\nTypst body\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "raw:typ",
+            "value": "Typst body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "raw",
+                "lang": "typst",
+                "typst": "\nTypst body\n"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Raw role",
+      "source": "{raw:latex}`x` {raw:typst}`y`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystRole",
+                "name": "raw:latex",
+                "value": "x",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 15
+                  }
+                },
+                "children": [
+                  {
+                    "type": "raw",
+                    "lang": "tex",
+                    "tex": "x"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "value": " ",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "mystRole",
+                "name": "raw:typst",
+                "value": "y",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 16
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 30
+                  }
+                },
+                "children": [
+                  {
+                    "type": "raw",
+                    "lang": "typst",
+                    "typst": "y"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p><div></div> <div></div></p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Page contents",
+      "source": "```{contents} My **headings**\n:context: page\n:depth: 2\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "contents",
+            "args": "My **headings**",
+            "options": {
+              "context": "page",
+              "depth": "2"
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "toc",
+                "kind": "page",
+                "depth": 2,
+                "children": [
+                  {
+                    "type": "heading",
+                    "depth": 2,
+                    "enumerated": false,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "My ",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        }
+                      },
+                      {
+                        "type": "strong",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "headings",
+                            "position": {
+                              "start": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 1
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div><h2>My <strong>headings</strong></h2></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Index directive",
+      "source": "```{index} single: First\n:label: here\n\npair: Another; Entry\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "index",
+            "args": "single: First",
+            "options": {
+              "label": "here"
+            },
+            "value": "pair: Another; Entry",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystTarget",
+                "label": "here",
+                "indexEntries": [
+                  {
+                    "entry": "First",
+                    "emphasis": false
+                  },
+                  {
+                    "entry": "Another",
+                    "subEntry": {
+                      "value": "Entry",
+                      "kind": "entry"
+                    },
+                    "emphasis": false
+                  },
+                  {
+                    "entry": "Entry",
+                    "subEntry": {
+                      "value": "Another",
+                      "kind": "entry"
+                    },
+                    "emphasis": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Index contents",
+      "source": "```{show-index} Index\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "show-index",
+            "args": "Index",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "genindex",
+                "children": [
+                  {
+                    "type": "heading",
+                    "depth": 2,
+                    "enumerated": false,
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Index",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div><h2>Index</h2></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Glossary directive",
+      "source": "```{glossary}\nword\n: Description\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "glossary",
+            "value": "word\n: Description",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "glossary",
+                "children": [
+                  {
+                    "type": "definitionList",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "definitionTerm",
+                        "position": {
+                          "start": {
+                            "line": 2,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "word",
+                            "position": {
+                              "start": {
+                                "line": 2,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 1
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "definitionDescription",
+                        "position": {
+                          "start": {
+                            "line": 3,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 1
+                          }
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "Description",
+                            "position": {
+                              "start": {
+                                "line": 3,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 1
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div><dl><dt>word</dt><dd>Description</dd></dl></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Smart quotes without typography",
+      "source": "a -- b ... (c) \"word\"",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "a -- b ... (c) “word”",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>a -- b ... (c) “word”</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Quote configuration",
+      "source": "\"Hello\"",
+      "options": {
+        "markdownit": {
+          "quotes": "«»‹›"
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "«Hello»",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>«Hello»</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Dollar math disabled",
+      "source": "$x$ and $$x$$",
+      "options": {
+        "extensions": {
+          "math": {
+            "amsmath": true
+          }
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "$x$ and $$x$$",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>$x$ and $$x$$</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "AMS math disabled",
+      "source": "\\begin{align}\nx=1\n\\end{align}",
+      "options": {
+        "extensions": {
+          "math": {
+            "dollarmath": true
+          }
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "\\begin{align}\nx=1\n\\end{align}",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>\\begin{align}\nx=1\n\\end{align}</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Unicode positions",
+      "source": "😀 é {sub}`2` and @paper",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "😀 é ",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "mystRole",
+                "name": "sub",
+                "value": "2",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 14
+                  }
+                },
+                "children": [
+                  {
+                    "type": "subscript",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "2",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "value": " and ",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "cite",
+                "identifier": "paper",
+                "label": "paper",
+                "kind": "narrative",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 19
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 25
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>😀 é <sub>2</sub> and <div></div></p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Unicode positions in a group",
+      "source": "😀 [see @α; @paper]",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "😀 [see @α; ",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "cite",
+                "identifier": "paper",
+                "label": "paper",
+                "kind": "narrative",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 19
+                  }
+                }
+              },
+              {
+                "type": "text",
+                "value": "]",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>😀 [see @α; <div></div>]</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Disabled HTML",
+      "source": "<div>**bold**</div>\n\n<em>word</em>",
+      "options": {
+        "markdownit": {
+          "html": false
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "<div>",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "strong",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "bold",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "value": "</div>",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "<em>word</em>",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>&#x3C;div><strong>bold</strong>&#x3C;/div></p>\n<p>&#x3C;em>word&#x3C;/em></p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Disabled inline HTML",
+      "source": "before <b>*bold*</b> after",
+      "options": {
+        "markdownit": {
+          "html": false
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "before <b>",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "emphasis",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "bold",
+                    "position": {
+                      "start": {
+                        "line": 1,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "value": "</b> after",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>before &#x3C;b><em>bold</em>&#x3C;/b> after</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Breaks switch",
+      "source": "a\nb",
+      "options": {
+        "markdownit": {
+          "breaks": true
+        }
+      },
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "a\nb",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>a\nb</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Quoted inline attributes",
+      "source": "{sub .a .b #label}`x`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystRole",
+                "name": "sub",
+                "value": "x",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 22
+                  }
+                },
+                "children": [
+                  {
+                    "type": "subscript",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "x",
+                        "position": {
+                          "start": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ],
+                    "class": "a b",
+                    "label": "label",
+                    "identifier": "label"
+                  }
+                ],
+                "options": {
+                  "class": "a b",
+                  "label": "label"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p><sub>x</sub></p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Duplicate inline labels",
+      "source": "{sub #one #two}`x`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystRoleError",
+                "value": "x",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>x</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Bare role option",
+      "source": "{sub extra}`x`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystRoleError",
+                "value": "x",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>x</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Empty role",
+      "source": "{sub}``",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "{sub}``",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>{sub}``</p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Unknown role options",
+      "source": "{unknown .a}`literal`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "mystRole",
+                "name": "unknown",
+                "value": "literal",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 22
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p><span class=\"role unhandled\"><code class=\"kind\">{unknown}</code><code>literal</code></span></p>",
+      "diagnostics": [
+        {
+          "message": "unknown role: unknown",
+          "ruleId": "role-known",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "Unknown directive options",
+      "source": "```{unknown}\n:opt: val\n\nbody\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "unknown",
+            "value": ":opt: val\n\nbody",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "<div class=\"directive unhandled\"><p><code class=\"kind\">{unknown}</code></p><pre><code>:opt: val\n\nbody</code></pre></div>",
+      "diagnostics": [
+        {
+          "message": "unknown directive: unknown",
+          "ruleId": "directive-known",
+          "fatal": true
+        }
+      ]
+    },
+    {
+      "title": "Unexpected known directive option",
+      "source": "```{image} a.png\n:unknown: x\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "image",
+            "args": "a.png",
+            "options": {
+              "unknown": "x"
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "image",
+                "url": "a.png",
+                "align": "center"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<img src=\"a.png\" class=\"align-center\">",
+      "diagnostics": [
+        {
+          "message": "unexpected option \"unknown\" provided (in image)",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "Unexpected directive body",
+      "source": "```{image} a.png\n\nbody\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "image",
+            "args": "a.png",
+            "value": "body",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "image",
+                "url": "a.png",
+                "align": "center"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<img src=\"a.png\" class=\"align-center\">",
+      "diagnostics": [
+        {
+          "message": "unexpected body provided for directive: image",
+          "ruleId": "directive-body-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "Code and whitespace",
+      "source": "```text\n  leading\n\twith tab\n\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "code",
+            "lang": "text",
+            "value": "  leading\n\twith tab\n",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-text\">  leading\n\twith tab\n\n</code></pre>",
+      "diagnostics": []
+    },
+    {
+      "title": "Multiline inline code",
+      "source": "`line one\nline two`",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "inlineCode",
+                "value": "line one line two",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p><code>line one line two</code></p>",
+      "diagnostics": []
+    },
+    {
+      "title": "Repeated footnote",
+      "source": "x[^n] y[^n]\n\n[^n]: Footnote",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "x",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "n",
+                "label": "n",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "text",
+                "value": " y",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              },
+              {
+                "type": "footnoteReference",
+                "identifier": "n",
+                "label": "n",
+                "position": {
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "footnoteDefinition",
+            "identifier": "n",
+            "label": "n",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "paragraph",
+                "position": {
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 1
+                  }
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Footnote",
+                    "position": {
+                      "start": {
+                        "line": 3,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<p>x<sup><a href=\"#user-content-fn-n\" id=\"user-content-fnref-n\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup> y<sup><a href=\"#user-content-fn-n\" id=\"user-content-fnref-n-2\" data-footnote-ref aria-describedby=\"footnote-label\">1</a></sup></p>\n<section data-footnotes class=\"footnotes\"><h2 class=\"sr-only\" id=\"footnote-label\">Footnotes</h2>\n<ol>\n<li id=\"user-content-fn-n\">\n<p>Footnote <a href=\"#user-content-fnref-n\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩</a> <a href=\"#user-content-fnref-n-2\" data-footnote-backref class=\"data-footnote-backref\" aria-label=\"Back to content\">↩<sup>2</sup></a></p>\n</li>\n</ol>\n</section>",
+      "diagnostics": []
+    },
+    {
+      "title": "Comment terminator",
+      "source": "% --><script>alert(1)</script><!--",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "comment",
+            "value": "--><script>alert(1)</script><!--",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "<!----&#x3E;<script>alert(1)</script>&#x3C;!---->",
+      "diagnostics": []
+    },
+    {
+      "title": "Raw HTML blocked",
+      "source": "<script>alert(1)</script>",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "html",
+            "value": "<script>alert(1)</script>",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "",
+      "diagnostics": []
+    },
+    {
+      "title": "Quoted code info",
+      "source": "```a\"b\nx\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "code",
+            "lang": "a\"b",
+            "value": "x",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            }
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-a&#x22;b\">x\n</code></pre>",
+      "diagnostics": []
+    },
+    {
+      "title": "Deep headings",
+      "source": "(label)=\n###### Last",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystTarget",
+            "label": "label",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          },
+          {
+            "type": "heading",
+            "depth": 6,
+            "position": {
+              "start": {
+                "line": 2,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Last",
+                "position": {
+                  "start": {
+                    "line": 2,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<h6 id=\"label\">Last</h6>",
+      "diagnostics": []
+    },
+    {
+      "title": "Include filters",
+      "source": "```{literalinclude} dir/a.py\n:start-after: START\n:end-before: END\n:lineno-match:\n:caption: Some **code**\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "literalinclude",
+            "args": "dir/a.py",
+            "options": {
+              "start-after": "START",
+              "end-before": "END",
+              "lineno-match": true,
+              "caption": "Some **code**"
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 6,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "dir/a.py",
+                "literal": true,
+                "lang": "python",
+                "caption": [
+                  {
+                    "type": "text",
+                    "value": "Some ",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    }
+                  },
+                  {
+                    "type": "strong",
+                    "position": {
+                      "start": {
+                        "line": 5,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "code",
+                        "position": {
+                          "start": {
+                            "line": 5,
+                            "column": 1
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 1
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "filter": {
+                  "startAfter": "START",
+                  "endBefore": "END"
+                },
+                "showLineNumbers": true,
+                "startingLineNumber": "match",
+                "filename": "a.py"
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"dir/a.py\"></div>",
+      "diagnostics": []
+    },
+    {
+      "title": "Include conflicting options",
+      "source": "```{include} a.md\n:start-at: START\n:start-line: 2\n```",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "include",
+            "args": "a.md",
+            "options": {
+              "start-at": "START",
+              "start-line": "2"
+            },
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "include",
+                "file": "a.md",
+                "literal": false,
+                "lang": "markdown",
+                "filter": {
+                  "startAt": "START",
+                  "lines": [
+                    [
+                      3
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<div file=\"a.md\"></div>",
+      "diagnostics": [
+        {
+          "message": "Conflicting options for directive: [\"start-at\", \"start-line\"]",
+          "ruleId": "directive-options-correct",
+          "fatal": false
+        }
+      ]
+    },
+    {
+      "title": "Nested colon fences",
+      "source": "::::{note}\n::: {warning}\nhello\n:::\n::::",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "mystDirective",
+            "name": "note",
+            "value": "::: {warning}\nhello\n:::",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "admonition",
+                "kind": "note",
+                "children": [
+                  {
+                    "type": "mystDirective",
+                    "name": "warning",
+                    "value": "hello",
+                    "position": {
+                      "start": {
+                        "line": 2,
+                        "column": 1
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 1
+                      }
+                    },
+                    "children": [
+                      {
+                        "type": "admonition",
+                        "kind": "warning",
+                        "children": [
+                          {
+                            "type": "paragraph",
+                            "position": {
+                              "start": {
+                                "line": 3,
+                                "column": 1
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 1
+                              }
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "hello",
+                                "position": {
+                                  "start": {
+                                    "line": 3,
+                                    "column": 1
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 1
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<aside class=\"admonition note\"><p class=\"admonition-title\">Note</p><aside class=\"admonition warning\"><p class=\"admonition-title\">Warning</p><p>hello</p></aside></aside>",
+      "diagnostics": []
+    },
+    {
+      "title": "Invalid YAML frontmatter",
+      "source": "---\na: b: c\n---\n\ntext",
+      "options": {},
+      "ast": {
+        "type": "root",
+        "children": [
+          {
+            "type": "code",
+            "lang": "yaml",
+            "value": "a: b: c",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 1
+              }
+            }
+          },
+          {
+            "type": "paragraph",
+            "position": {
+              "start": {
+                "line": 5,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "text",
+                "position": {
+                  "start": {
+                    "line": 5,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 1
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "html": "<pre><code class=\"language-yaml\">a: b: c\n</code></pre>\n<p>text</p>",
+      "diagnostics": []
+    }
+  ]
+}

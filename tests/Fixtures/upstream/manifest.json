@@ -1,0 +1,2148 @@
+{
+    "repository": "https://github.com/jupyter-book/mystmd",
+    "revision": "807672d850695c2863143571f296327b15f203bd",
+    "versions": {
+        "myst-parser": "1.7.4",
+        "myst-to-html": "1.7.4",
+        "myst-spec": "0.0.6"
+    },
+    "files": {
+        "packages/markdown-it-myst/package.json": {
+            "sha256": "0a6355d82e4bbd0c7c5303f427d88fffd24fece1a0c3feac1518ef2d1eaa15dc"
+        },
+        "packages/markdown-it-myst/src/inlineAttributes.spec.ts": {
+            "sha256": "81eba5a193779ea319b9719fe4f9fb7fdab3353bec09c00e3d82a66928a0fd4b"
+        },
+        "packages/markdown-it-myst/tests/cases.spec.ts": {
+            "sha256": "a734623186d0b15a1a583b922ff107ccf643b5274dd49a5d19ebc0c2a56de7c2"
+        },
+        "packages/markdown-it-myst/tests/citations.yml": {
+            "sha256": "4849cea835505f2addb2bb20f9a5f7461b83df6a527076a0a6cd67778297449c",
+            "cases": [
+                "basic in-text citation",
+                "complex in-text citation",
+                "basic cite-group",
+                "complex cite-group",
+                "Excludes ending punctuation",
+                "Grouped citations",
+                "DOI gets tagged",
+                "Suffix with markup",
+                "Single character citation",
+                "Citations not parsed inside URLs",
+                "Citation after URL with space is parsed",
+                "Bracket URL with `@` is citation",
+                "Escaped bracket URL with `@` is parsed normally.",
+                "Autolink then letters@nospace is link and text",
+                "Citation followed by autolink stops at `<`",
+                "Citation inside HTML span does not eat HTML",
+                "Nested labels"
+            ]
+        },
+        "packages/markdown-it-myst/tests/directives.spec.ts": {
+            "sha256": "90ee5c48e2b0854032664ef43a5b132624200912824b18a951e736b14e2d8d30"
+        },
+        "packages/markdown-it-myst/tests/footnotes.yml": {
+            "sha256": "b3fe22005d7cbfb5a172ec4d0d37b95666bed4bdccb7550082bd8e021c0c1348",
+            "cases": [
+                "footnote reference with sub role"
+            ]
+        },
+        "packages/markdown-it-myst/tests/roles.spec.ts": {
+            "sha256": "8e894c3a0fe7d9c59b29823fa5eff7480fe2fc696e3acdf5b42e6727fdd8797c"
+        },
+        "packages/markdown-it-myst/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-common/package.json": {
+            "sha256": "32d1cc9fc29e9e09fc375effef5a84c045bb80a4271b31bc1045b32f0951d3f4"
+        },
+        "packages/myst-common/src/extractParts.spec.ts": {
+            "sha256": "b85c3570ab759b8a633c86738a3af9e1d347343d64a550ad8c98c495faa4b13a"
+        },
+        "packages/myst-common/src/indices.spec.ts": {
+            "sha256": "507d04fe09d92f473be41a551e7f731502c873e953f873da2a108c5bec618df6"
+        },
+        "packages/myst-common/src/plural.spec.ts": {
+            "sha256": "8c6e4a6cb47f46e10de734d1bf5dbe65f46be2d804a63e115daf8c05283ed537"
+        },
+        "packages/myst-common/src/utils.spec.ts": {
+            "sha256": "d80a09880c337685bc5b4d6e2179e03942e0fd9958bdc53e21bbc333a3de00d9"
+        },
+        "packages/myst-common/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-directives/package.json": {
+            "sha256": "46a663257d0603a15b7cf907d609c5b030951c823f6859df3c67393b4b7950db"
+        },
+        "packages/myst-directives/src/code.spec.ts": {
+            "sha256": "85aeddd5cbfbcb8b14a4f8a7b419c536d2716daa925764a961fc111dcbf4cf06"
+        },
+        "packages/myst-directives/src/include.spec.ts": {
+            "sha256": "e819e1429e1d501d1c20b0fcf2a1a7d6bac2025ed11a38ac080b820f76f44617"
+        },
+        "packages/myst-directives/tsconfig.json": {
+            "sha256": "d0ccc6d943fca1ebc340e5f7b8253a2be92704a48ad2dc26f718cca2112b00d8"
+        },
+        "packages/myst-ext-button/package.json": {
+            "sha256": "ada793f2f2923f0d440f8756a77fc6f39608e0beffe6233fe250253c63ee4545"
+        },
+        "packages/myst-ext-button/tests/button.spec.ts": {
+            "sha256": "5aa6f9c4c243df18205d9e1071bc578fcf974d69de771ea22bcca7a16361f9d6"
+        },
+        "packages/myst-ext-button/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-card/package.json": {
+            "sha256": "b222fee27fc7028724ed0218ef34505ad62da5551c2cba2c5c06386b73582f8d"
+        },
+        "packages/myst-ext-card/tests/card.spec.ts": {
+            "sha256": "fb113579d3e1a4d1aa81dec213adc80d21042f04a26fa7d17fbfbecc93d3b5ee"
+        },
+        "packages/myst-ext-card/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-exercise/package.json": {
+            "sha256": "1b0ca4ac9809f9a0ee2b4fa0c821a17f82ade4b1b9286dd2183675db7fe2b32a"
+        },
+        "packages/myst-ext-exercise/tests/exercise.spec.ts": {
+            "sha256": "0a08ed070271ed0d3a79c2ae74e7b1bfde18771679dd72243bf107cac98490fd"
+        },
+        "packages/myst-ext-exercise/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-grid/package.json": {
+            "sha256": "23e5b6520f53869515379bb14bee1bd17da4481c1c0d62d7ef7bf81b454e96ee"
+        },
+        "packages/myst-ext-grid/tests/grid.spec.ts": {
+            "sha256": "615cd71c0ff71be79e8d91e09698c3b4f4f908a7bda9e69a25ea7bdadcc29043"
+        },
+        "packages/myst-ext-grid/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-icon/package.json": {
+            "sha256": "29b8f5444b05f462ef266054a082744974670b04cb6b7fcc6a299bcf43d72808"
+        },
+        "packages/myst-ext-icon/tests/icon.spec.ts": {
+            "sha256": "8648f48f88d989a5afa01350203f35d480cc02afd1ab9e8c3d8ec097166db6bd"
+        },
+        "packages/myst-ext-icon/tsconfig.json": {
+            "sha256": "d0ccc6d943fca1ebc340e5f7b8253a2be92704a48ad2dc26f718cca2112b00d8"
+        },
+        "packages/myst-ext-proof/package.json": {
+            "sha256": "9be90b1a6a53a4efebf1edbef8cfd4fcbcbe0b9c3823bd0b281cd9e2654894fa"
+        },
+        "packages/myst-ext-proof/tests/proof.spec.ts": {
+            "sha256": "d921256344c5da57169d64c1212e4c6f0d67cba43e5b52b64308c3f1125ebccf"
+        },
+        "packages/myst-ext-proof/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-reactive/package.json": {
+            "sha256": "c059ca6cac3121413a2c49259dde51843ba2dc7b6bda0437ca695561929634f1"
+        },
+        "packages/myst-ext-reactive/tests/reactive.spec.ts": {
+            "sha256": "7da62bdcd63164532b13941ffd59ed7abb09ab2949b28ea4322fccb519c2a976"
+        },
+        "packages/myst-ext-reactive/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-ext-tabs/package.json": {
+            "sha256": "e9c0dc8bc9b31ce3e656476f372e6262ae109e4d30f9d87374976f1dd864735c"
+        },
+        "packages/myst-ext-tabs/tests/tabs.spec.ts": {
+            "sha256": "acb4cba313e6fef09844962bbf31974592249181a71b812291578d1dc8991a4f"
+        },
+        "packages/myst-ext-tabs/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-frontmatter/package.json": {
+            "sha256": "59848aa6d191fa5db218225714f7f1c561fdfdcd45fd91b1951de5837d1500bd"
+        },
+        "packages/myst-frontmatter/src/affiliations/affiliations.yml": {
+            "sha256": "d09eb19fed854f26215ab42228cff8189de7d510b97a8dad311a771e5822d1af",
+            "cases": [
+                "Simple affiliation text in list",
+                "Simple affiliations string",
+                "Use affiliation rather than affiliations`s`",
+                "Using both affiliation and affiliation`s` shows a warning",
+                "Warn if affiliation has no name/institution",
+                "Support QMD style affiliations (ref)",
+                "Support QMD style affiliations (inline reference)",
+                "Affiliations unpack semicolon-delimited lists",
+                "Author with reference to existing affiliation",
+                "Author with string affiliation resolves to top level",
+                "Author with affiliation object resolves to top level",
+                "Duplicate affiliation ids warn",
+                "Duplicate affiliation strings resolve",
+                "Duplicate affiliation objects resolve",
+                "Author with affiliation object replaces id at top level",
+                "Affiliation with doi passes",
+                "Affiliation with invalid doi fails",
+                "extra keys removed",
+                "full object returns self",
+                "invalid ringgold number errors",
+                "numeric postal code coerces to string",
+                "affiliations can have social logins"
+            ]
+        },
+        "packages/myst-frontmatter/src/biblio/biblio.yml": {
+            "sha256": "ef53d4058ee5c6b2b3b77dd0568822d6ef5163c9ab299bf487878e3fd7701fad",
+            "cases": [
+                "empty object is removed",
+                "extra keys removed",
+                "full object returns self",
+                "number input coerces to number field",
+                "string input coerces to number field"
+            ]
+        },
+        "packages/myst-frontmatter/src/contributors/authors.yml": {
+            "sha256": "4a21bc31207dd1b3faf8c93ffd2731c74e43401fca0bef990f9987dc4bacf394",
+            "cases": [
+                "Simple Author Text in List",
+                "Simple Authors String",
+                "Use Author rather than author`s`",
+                "Using both author and author`s` shows a warning",
+                "Affiliations unpack semicolon-delimited lists",
+                "Affiliations can be an object",
+                "First email is corresponding",
+                "First email is corresponding (unless false)",
+                "Next email is corresponding if first is false",
+                "Respect corresponding flag",
+                "First email is corresponding (unless collaboration)",
+                "Collaboration cannot be corresponding (first Person gets corresponding flag)",
+                "Warn if author has no name",
+                "Allow no family name if defined explicitly",
+                "Warn if computed literal starts with comma",
+                "Allow explicit literal to start with comma",
+                "Warn if parsed author name has no given name",
+                "Allow no given name if defined explicitly",
+                "Parsed name is maintained",
+                "Name object with explicit commas is ok",
+                "Name that parses to values with commas warns",
+                "Name string with extra comma warns",
+                "Display name expands",
+                "Display name expands",
+                "Complex name renders",
+                "Author that defines name and nameParsed still passes",
+                "Mismatch between name and nameParsed warns",
+                "author as id resolves as placeholder",
+                "reviewer as ref resolves as placeholder"
+            ]
+        },
+        "packages/myst-frontmatter/src/contributors/contributors.yml": {
+            "sha256": "d9c7ad89a9f04818145288d2f5e1e2ba85437fadaab282ee6311906ba9398c21",
+            "cases": [
+                "full object returns self",
+                "extra keys removed",
+                "invalid orcid errors",
+                "invalid email errors",
+                "unknown roles warn",
+                "invalid roles errors",
+                "corresponding with no email errors",
+                "website coerces to url",
+                "collaboration errors",
+                "editor/reviewer added to collaborators",
+                "editor/reviewer collaborators pass",
+                "editor/reviewer authors pass",
+                "author as id reference resolves to object",
+                "author as collaboration passes",
+                "author as non-collaboration affiliation fails and suggests collab:true",
+                "author with totally unknown fields fails and does not suggest collab:true",
+                "reviewer/editor/contributor as collaboration pass"
+            ]
+        },
+        "packages/myst-frontmatter/src/contributors/credit.yml": {
+            "sha256": "b397572c78b091fd5d357a1edeaa4d9a6f63d91a87eae864d36674394f41628c",
+            "cases": [
+                "Normalize contributor roles (e.g. english spelling)",
+                "String list",
+                "Coerces common actions into full roles",
+                "Any role, but raise a warning"
+            ]
+        },
+        "packages/myst-frontmatter/src/contributors/orcid.yml": {
+            "sha256": "63eff05c5ccadd0580c4d99547a8f59716bfc55552eb0e65f1a6494e33b9d67e",
+            "cases": [
+                "Valid ORCID",
+                "Using http",
+                "Not a valid ORCID"
+            ]
+        },
+        "packages/myst-frontmatter/src/downloads/downloads.yml": {
+            "sha256": "e02d4d031baec3cb088cd86e0f01dcfe510a1adf2d2ca7295758a302c24990a2",
+            "cases": [
+                "download string coerces to file",
+                "download ref coerces to id",
+                "downloads file and format pass",
+                "empty downloads persists as empty list",
+                "download with url and id errors",
+                "download with neither file nor id errors",
+                "cannot set internal",
+                "full download object passes",
+                "duplicate id errors",
+                "duplicate url errors"
+            ]
+        },
+        "packages/myst-frontmatter/src/execute/execute.yml": {
+            "sha256": "cc5d7d2bfdbd89ddc23f2cfd082c986f2e92dec6459a39a9f27c19a5ee48a60a",
+            "cases": [
+                "empty object is empty",
+                "extra keys removed",
+                "full object returns self",
+                "renamed skip is aliased",
+                "renamed skip and new alias warns"
+            ]
+        },
+        "packages/myst-frontmatter/src/exports/exports.yml": {
+            "sha256": "657a1c74632b1dd4b43d384de95564b7f7670f1272311cd7cf0326560acd77d4",
+            "cases": [
+                "Exports list",
+                "Export list (not plural)",
+                "Malformed list",
+                "Malformed value (exports)",
+                "Malformed value (export)",
+                "Export as a single object",
+                "Not a format",
+                "Metadata isn't validated, but is kept",
+                "Simple export as a string of the format",
+                "Simple export as a string of the format (plural)",
+                "Unknown string for export",
+                "Handle export strings",
+                "empty object errors",
+                "tex+pdf coerces to pdf+tex",
+                "invalid format errors",
+                "invalid template errors",
+                "invalid output errors",
+                "full object returns self",
+                "extra keys are maintained",
+                "article coerces to articles",
+                "sub_article coerces to sub_articles",
+                "sub_articles not allowed on non-jats",
+                "tex/pdf/pdf+tex support multiple articles",
+                "md/docx/jats do not support multiple articles",
+                "pdf filename coerces to format and output",
+                "pdf extension coerces to format",
+                "pdf output adds format",
+                "export with only template validates",
+                "unknown output errors",
+                "output folder passes",
+                "output hidden folder passes",
+                "article object passes",
+                "article objects with only file and only title pass",
+                "article object with no file/title errors",
+                "invalid article levels error",
+                "empty articles is removed",
+                "articles with only titles error",
+                "export toc passes",
+                "export toc as string coerces to tocFile",
+                "export toc and article errors",
+                "export toc file and article errors",
+                "export toc and sub_article errors",
+                "export with invalid toc errors",
+                "zip passes",
+                "invalid zip errors",
+                "export allows id",
+                "duplicate id errors"
+            ]
+        },
+        "packages/myst-frontmatter/src/funding/funding.yml": {
+            "sha256": "3bfca0233136eace5d21481190eafa7f583da4a9f9a8dfe2e921b4b03c749a45",
+            "cases": [
+                "Full funding object passes",
+                "String coerces to statement",
+                "Funding object coerces to list",
+                "Award object coerces to list",
+                "Source object coerces to list",
+                "Investigator object coerces to list",
+                "Recipient object coerces to list",
+                "Award fields on funding coerce to object",
+                "Award fields on funding warn if 'awards' is also present",
+                "Funding contributor and author is persisted in authors",
+                "Non-funding contributors remain"
+            ]
+        },
+        "packages/myst-frontmatter/src/jupytext/jupytex.yml": {
+            "sha256": "b26100d40c349c43cf62e957278abd3841261174ee11921a5582381878a10995",
+            "cases": [
+                "empty object returns self",
+                "extra keys removed",
+                "full object returns self"
+            ]
+        },
+        "packages/myst-frontmatter/src/kernelspec/kernelspec.yml": {
+            "sha256": "8d615d864f610adb2042cca11b4af02464d2b03eb13d2a976907f98b9c66e069",
+            "cases": [
+                "empty object has defaults",
+                "extra keys removed",
+                "full object returns self"
+            ]
+        },
+        "packages/myst-frontmatter/src/licenses/licenses.spec.ts": {
+            "sha256": "4bebbd888fb13d19967fcce56a3d95bb66319929d75657834c6f6478cfdc7708"
+        },
+        "packages/myst-frontmatter/src/licenses/licenses.yml": {
+            "sha256": "2fb22fe662298805e75ecbd2063e4f42855983c679be4da479a4a2e5856c0ad6",
+            "cases": [
+                "non-spdx string warns",
+                "non-spdx string under content warns",
+                "Empty license returns empty",
+                "Empty content returns empty",
+                "Valid License",
+                "Valid License under content",
+                "Valid License under code",
+                "Matching code and content coerces",
+                "Code and content coerce individually",
+                "Note passes with coerced license",
+                "Valid object passes to content",
+                "Valid content object passes",
+                "Valid code object passes",
+                "Correct license (cc-by) coerces",
+                "Correct licenses (gpl) coerces",
+                "Correct licenses (apache 2) coerces",
+                "Invalid license content under correct id warns",
+                "Id not in spdx warns",
+                "Non-spdx validates as custom license",
+                "OSI/free/CC fields warn for custom license if true",
+                "CC passes for custom creativecommons license",
+                "url coerces to license (and warns)",
+                "url string coerces to license from spdx list",
+                "url coerces to license from spdx list",
+                "url coerces to license from spdx list with http",
+                "url coerces to license from spdx list without trailing slash",
+                "string with no spaces coerces to unknown id (and warns)",
+                "Other long string coerces to note (and warns)",
+                "Other short string coerces to name (and warns)",
+                "Long string with \"mit\" buried in it is not coerced to MIT license"
+            ]
+        },
+        "packages/myst-frontmatter/src/math/math.yml": {
+            "sha256": "48af7037c1caf65707e88bcab3fdfafe3659ab2b6d943c6a84f4d73e0ce04c1e",
+            "cases": [
+                "String macro coerces",
+                "Macro with only macro passes",
+                "Macro with title/description passes"
+            ]
+        },
+        "packages/myst-frontmatter/src/numbering/numbering.spec.ts": {
+            "sha256": "9750f9a7008a2a71f85c53b987e6b2d96ff7fa302341c2b3ce27ac692d5c6621"
+        },
+        "packages/myst-frontmatter/src/numbering/numbering.yml": {
+            "sha256": "1f21a92ec42015dbac8625c4b465b1d84b67fd12a5a18af93ff389c7a75892eb",
+            "cases": [
+                "empty object returns self",
+                "invalid object errors",
+                "extra keys are kept",
+                "invalid extras keys are removed",
+                "full object returns self",
+                "headings unpack",
+                "Allow numbers to start at",
+                "Numbers can't be negative or fractional",
+                "String becomes template",
+                "Specific heading overrides headings",
+                "Boolean coerces",
+                "Extra fields on enumerator warn",
+                "Enumerator enabled removed without warning",
+                "Extra fields on all warn",
+                "continue validates",
+                "continue and start are allowed",
+                "continue strings coerce",
+                "title validates",
+                "title boolean coerces",
+                "title number coerces",
+                "extra fields ignored",
+                "enumerator validates"
+            ]
+        },
+        "packages/myst-frontmatter/src/page/page.yml": {
+            "sha256": "da41a34d3bbef661b2ef8ae3499d3f031380a0ffeeeb27fa03cb844532fa14f1",
+            "cases": [
+                "invalid type errors",
+                "empty object returns self",
+                "full object returns self",
+                "invalid date errors",
+                "parts validates arbitrary keys",
+                "parts validates list of strings",
+                "parts validates known keys",
+                "known part moves to parts",
+                "known part combines with parts",
+                "duplicate part errors",
+                "non-string abstract errors",
+                "non-string part errors",
+                "content_includes_title true",
+                "content_includes_title false",
+                "content_includes_title invalid"
+            ]
+        },
+        "packages/myst-frontmatter/src/project/project.yml": {
+            "sha256": "ddc08eb4e1c19dc579ffc3626536108e301fb204d56a26f4083a4ffe231d063e",
+            "cases": [
+                "invalid type errors",
+                "empty object returns self",
+                "full object returns self",
+                "boolean numbering is valid",
+                "invalid doi errors",
+                "github username/repo coerces",
+                "invalid github errors",
+                "invalid arxiv errors",
+                "invalid math errors",
+                "bibliography string coerces",
+                "settings output_stderr",
+                "settings output_stderr bad value",
+                "settings unknown value",
+                "invalid copyright errors",
+                "parts are validated",
+                "abbreviations can be null",
+                "abbreviations not added if invalid",
+                "short abbreviations are invalid",
+                "pmcid validates",
+                "invalid pmcid errors",
+                "pmid string validates",
+                "pmid number validates",
+                "invalid pmid errors",
+                "doi is lifted from identifiers",
+                "unknown string identifier passes",
+                "unknown numeric identifier passes",
+                "known identifiers nest under identifiers",
+                "invalid zenodo errors",
+                "identifier coerces to identifiers",
+                "duplicate identifiers error",
+                "duplicate dois error"
+            ]
+        },
+        "packages/myst-frontmatter/src/references/references.yml": {
+            "sha256": "49103eaf3b123467878b7d2432d40c5c565e4188f02516c24f19ed5cf6e5f0ab",
+            "cases": [
+                "valid reference passes",
+                "case is normalized",
+                "warn on unknown kind",
+                "sphinx kind coerces",
+                "allow no kind",
+                "error on no url",
+                "error on invalid url",
+                "coerce string to object",
+                "remove trailing slash",
+                "invalid references errors",
+                "complex key errors"
+            ]
+        },
+        "packages/myst-frontmatter/src/settings/mystToTex.yml": {
+            "sha256": "b9e7767e7a0e7301c1989aa2cdd34ae9372c9ee239e6f11fb8bd55f29d627af2",
+            "cases": [
+                "unknown option",
+                "minted code style",
+                "unknown code style",
+                "beamer true",
+                "beamer false",
+                "beamer invalid"
+            ]
+        },
+        "packages/myst-frontmatter/src/settings/parser.yml": {
+            "sha256": "8a0e2d28136e31e2a85a83db57c2890aac8fdd2077e3e750fb809d3990be879f",
+            "cases": [
+                "unknown option",
+                "dollarmath true",
+                "dollarmath false",
+                "dollarmath with alias",
+                "dollarmath invalid boolean"
+            ]
+        },
+        "packages/myst-frontmatter/src/settings/settings.yml": {
+            "sha256": "29ee850d7ca1144f96d3894bf5b596ea7ec3eeb82299caf620afaa2b32ac1e6e",
+            "cases": [
+                "settings output_stderr",
+                "settings output_stderr bad value",
+                "settings unknown value",
+                "infer dois from urls",
+                "infer dois from urls alias"
+            ]
+        },
+        "packages/myst-frontmatter/src/site/keywords.yml": {
+            "sha256": "aa9a1d591f30aec05955d6a03679b0b16aa9522a30a573587ecb3821937e7b78",
+            "cases": [
+                "Keywords as a list",
+                "Keywords string \";\"",
+                "Keywords string \",\""
+            ]
+        },
+        "packages/myst-frontmatter/src/site/options.yml": {
+            "sha256": "3178df37eebc184ba6c0f0381b1ad82b927f2dd6de3b3650b93766d8fb5b1dad",
+            "cases": [
+                "arbitrary options validate",
+                "non-string options validate",
+                "non-object options errors",
+                "reserved export keys error"
+            ]
+        },
+        "packages/myst-frontmatter/src/socials/validators.spec.ts": {
+            "sha256": "0ea5b7a4a7a7f4dbe72d7e528a65d392a340ecb0a14512a75ddbccb455041add"
+        },
+        "packages/myst-frontmatter/src/thebe/thebe.yml": {
+            "sha256": "c81b421f4c1b8e7e72ed79e8f35f925351ca9912239e7268b98b3330422874f4",
+            "cases": [
+                "Valid and Exhaustive Options",
+                "jupyter lite",
+                "jupyter true",
+                "jupyter binder",
+                "jupyter.binder = true",
+                "jupyter.binder = false",
+                "jupyter.binder = false, with server",
+                "jupyter.binder repo only",
+                "jupyter.binder repo as url",
+                "jupyter.binder custom (non-git) provider",
+                "thebe as empty object is removed",
+                "thebe strips extra keys",
+                "custom provider accepts url as repo value",
+                "errors if no repo with custom provider",
+                "thebe: \"server\" is not valid",
+                "thebe.server must be an object",
+                "thebe.server must have url and token fields - empty",
+                "thebe.server must have url and token fields - no url",
+                "thebe.server must have url and token fields - not a url string",
+                "thebe.server must have url and token fields - no token",
+                "thebe.binder - extra fields wil be stripped"
+            ]
+        },
+        "packages/myst-frontmatter/src/utils/edgecases.yml": {
+            "sha256": "8f27f2a11a27b0c2089c41bccc306eea87fe5fbf1534b5f59c789c69c6c603a6",
+            "cases": [
+                "unnamed",
+                "unnamed"
+            ]
+        },
+        "packages/myst-frontmatter/src/utils/fillPageFrontmatter.spec.ts": {
+            "sha256": "ceeb59dd347728719d11dd51b9a66dfc29b4422aae9e8a138350b6066d07d649"
+        },
+        "packages/myst-frontmatter/src/utils/parseName.spec.ts": {
+            "sha256": "edb17e9708ae476ef79c2b2775d7992092c6a2c9568872e3106ef7c5244fe241"
+        },
+        "packages/myst-frontmatter/src/utils/realnames.yml": {
+            "sha256": "66000a4ec4b8ba5762e0662ccd090573b41d51d8bbeecb356029331cc1f76ea9",
+            "cases": [
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed"
+            ]
+        },
+        "packages/myst-frontmatter/src/utils/referenceStash.spec.ts": {
+            "sha256": "d49b01b45351beea22a17548224450d85e2aa977105266bd006b739a042b4d4b"
+        },
+        "packages/myst-frontmatter/src/utils/testnames.yml": {
+            "sha256": "3151837f5cfa799089eb134a115039d831b0baa067863bc911253e8f1fc01efd",
+            "cases": [
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed",
+                "unnamed"
+            ]
+        },
+        "packages/myst-frontmatter/src/utils/unnestKernelSpec.spec.ts": {
+            "sha256": "1464e54bec2b750eaca08ea54c2534ecf1c5bc1d431edc38e919a6f2e303fe8a"
+        },
+        "packages/myst-frontmatter/src/venues/venues.yml": {
+            "sha256": "37f8827cf432989f4e87330ea78e15d4bfee411e8323916799863dc589c00bcf",
+            "cases": [
+                "empty venue returns self",
+                "title/url returns self",
+                "string returns object with title",
+                "invalid keys ignored",
+                "doi/short_title validate",
+                "additional venue fields validate",
+                "number for venue number validates"
+            ]
+        },
+        "packages/myst-frontmatter/tests/examples.spec.ts": {
+            "sha256": "672eab2fb87c66cbe4a7e8ceb8a242d44f0cd530377d8eb81a619b7e4014e190"
+        },
+        "packages/myst-frontmatter/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-parser/docs/_config.yml": {
+            "sha256": "14aa632f755a85c193ad982556d553e93a4c3174873d8660972b744b9b915ebb",
+            "cases": []
+        },
+        "packages/myst-parser/docs/_toc.yml": {
+            "sha256": "989b0c94d317023b7245363e431a37153d856f833f1ea121925c5e9468192d17",
+            "cases": []
+        },
+        "packages/myst-parser/package.json": {
+            "sha256": "fce2fe6d63b314a382407de183695daa7fd763df41c3eb84ea507d6b89faf980"
+        },
+        "packages/myst-parser/src/transforms/listItemParagraphs.spec.ts": {
+            "sha256": "133117273fa43e3bc1478dbde67763f8b90701a711c28c74bb78eddca854720e"
+        },
+        "packages/myst-parser/src/tsconfig.json": {
+            "sha256": "9c8a509107865fcaf01476600f296feca38299948fcf651d96c9ff5cb8ae0245"
+        },
+        "packages/myst-parser/tests/blocks.target.md": {
+            "sha256": "0f4364d6c4ee11d72f45d0981c52841203243ffec4612aa0b2d26afb5b50e23f"
+        },
+        "packages/myst-parser/tests/colonFences.spec.ts": {
+            "sha256": "cefe49a23e7bc7c4123668c134c05ef7fd94c3d3dc9421a4922fb5ee14237461"
+        },
+        "packages/myst-parser/tests/commonmark.spec.ts": {
+            "sha256": "ffa3ac29e1f8e71bd1ace17b5d250dba50bc63163e4184b2a772e7edc082f1cc"
+        },
+        "packages/myst-parser/tests/commonmark/cmark_spec_0.30.json": {
+            "sha256": "bd8caeaf5b9c8a87f96364d6ebcaa96942edf7acea5cb1ac9925ea446be538dd"
+        },
+        "packages/myst-parser/tests/directiveOptions.spec.ts": {
+            "sha256": "ec57e96ff2254201c9c47de947ad9caac2ca22fc793a599b9488338e77ac161a"
+        },
+        "packages/myst-parser/tests/directives.math.md": {
+            "sha256": "974d777fa10494feafa6cdca2d80d6829e4bfca367fac54c36f0326feffb784e"
+        },
+        "packages/myst-parser/tests/directives/admonitions.yml": {
+            "sha256": "153ff7f0c33cbe727be82ec228f6a313df7e1d7321de22d5dd835d61c60aedaa",
+            "cases": [
+                "admonition parses with arg only",
+                "admonition directive parses with kind/class/arg/body"
+            ]
+        },
+        "packages/myst-parser/tests/directives/aside.yml": {
+            "sha256": "70094cbcc4af58f982e8a15e2e64c1d1ab9d1a39c9dc4804e5f59da3d90efd42",
+            "cases": [
+                "aside directive parses",
+                "margin directive parses",
+                "sidebar directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/basicDirective.spec.ts": {
+            "sha256": "295e06d3e90dca4e7f4c67e9fbb782f9eadfbe5c0f6d0fe3a10d9573c03ea31c"
+        },
+        "packages/myst-parser/tests/directives/bibliography.yml": {
+            "sha256": "d624e2a8502297463ad9d52867a8afef4c6fb9fd0cf86b785b85223f5e30db90",
+            "cases": [
+                "bibliography directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/code.yml": {
+            "sha256": "e6fe8e03b27c1ff1844d021240a4bd4465482bedc9b4c7cc351ea2a8eb229a8e",
+            "cases": [
+                "code-block with name parses",
+                "code-block with indentation",
+                "code-block with name language options parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/directives.spec.ts": {
+            "sha256": "4e91ebccb6a8d2850ca09582d6ac45eb0c8ca8a48d50914c9366590e35a4338c"
+        },
+        "packages/myst-parser/tests/directives/dropdown.yml": {
+            "sha256": "b8d95263136f5c924f9f8bd388bc9cd1795db3360e66c46c241647a8b800f773",
+            "cases": [
+                "basic dropdown directive parses",
+                "dropdown directive parses with arg/option"
+            ]
+        },
+        "packages/myst-parser/tests/directives/embed.yml": {
+            "sha256": "5dfd6b2d63014c392fa058c5e531b4a35bf9678d3d3cee2b3562c5c47fd0bb0a",
+            "cases": [
+                "embed directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/ext.directive.spec.ts": {
+            "sha256": "967ea373ab075438b37d59e6ba9fc8dfb4a4e201a5f858cc78a55520ecfc2c4f"
+        },
+        "packages/myst-parser/tests/directives/figure.yml": {
+            "sha256": "649008738b435671dc77d7f9faa02f114f5cd8d9431e1f5a310a3e22d3ed5595",
+            "cases": [
+                "figure directive parses, no caption",
+                "figure directive parses, caption",
+                "figure directive parses, caption and legend"
+            ]
+        },
+        "packages/myst-parser/tests/directives/iframe.yml": {
+            "sha256": "e3275af438087f6c65c12917ffcc3cffa9c1c67a80b02154a37ddffd40228e28",
+            "cases": [
+                "iframe directive parses",
+                "iframe with caption"
+            ]
+        },
+        "packages/myst-parser/tests/directives/image.yml": {
+            "sha256": "340e16f72ccfde511e498810ff3c2da936bbebabb65d80ea808221214834eea3",
+            "cases": [
+                "image directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/include.yml": {
+            "sha256": "d056d5e56fbb4af4bbf21752e7b554dd62eb3146369058b5c92654c575554b69",
+            "cases": [
+                "include directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/label-alias.yml": {
+            "sha256": "e965f326eeb8ee0d1513c4e334e3f39bf064e3b5e343da2778c4ef755dccbccb",
+            "cases": [
+                "figure label works",
+                "figure name works",
+                "figure name/label warns and takes label"
+            ]
+        },
+        "packages/myst-parser/tests/directives/math.yml": {
+            "sha256": "e76fb6619c9eb625513a594aef9db74500bccfd99825267bef5bc24439fa232e",
+            "cases": [
+                "math directive parses",
+                "tight math",
+                "math with empty label is not set",
+                "math directive with typst argument"
+            ]
+        },
+        "packages/myst-parser/tests/directives/mdast.yml": {
+            "sha256": "d49ca4c0d95b4a75b635f389d7c2b6c3e704517281782d7e40b3c5cfafa5bab3",
+            "cases": [
+                "mdast directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/mermaid.yml": {
+            "sha256": "9fc504b5084e4a59cf03f73d45e561d8d6ac82ce9877ac213fcf85e4323f7556",
+            "cases": [
+                "mermaid directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/mystdemo.yml": {
+            "sha256": "919358731403c1f78f14429aee0296a363fb24bb461bc70b40f70b5b435b60f2",
+            "cases": [
+                "myst directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/directives/table.yml": {
+            "sha256": "944141df83a4a6d70cc2383735143fa057a88b234c4eec7a2b19dc4554db939c",
+            "cases": [
+                "list-table directive parses"
+            ]
+        },
+        "packages/myst-parser/tests/linkify.spec.ts": {
+            "sha256": "94af83ebb4ebaf29603c695a2ff5c89edcf8fdfc540fbd2fec23636d6aca18f2"
+        },
+        "packages/myst-parser/tests/math.spec.ts": {
+            "sha256": "b83729ca58a200ceabe7cf622e993c0e2dad6322e4a64e9d2521e8efa89d69f1"
+        },
+        "packages/myst-parser/tests/myst.spec.ts": {
+            "sha256": "4da4612ef5b862fda94a0cb1d19570fe2bf1c3b740d09810aaad8ccaad79520a"
+        },
+        "packages/myst-parser/tests/position.ts": {
+            "sha256": "178fb37136d0fea3c3355019ffc8eaecec2ca4cf5b66f9a36e482cf026a77da3"
+        },
+        "packages/myst-parser/tests/recursiveParsing.spec.ts": {
+            "sha256": "c71c2c37edd0e8ca2982ddcffffbc76e220e376e28549122d93f6eebb64092bf"
+        },
+        "packages/myst-parser/tests/roles.generic.md": {
+            "sha256": "f55656317679e0e339c08519521b187a27aec3d839dd5d74fa90ffa790502e53"
+        },
+        "packages/myst-parser/tests/roles.references.md": {
+            "sha256": "ecd0078593f969d897f388199a4506b26afbca87ec45250565a323c741b8155c"
+        },
+        "packages/myst-parser/tests/roles/abbreviation.yml": {
+            "sha256": "ac537f075f531f7f92a8487060c0ec90ea456150de259692d21236def95ba564",
+            "cases": [
+                "abbreviation role parses",
+                "abbr role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/basicRole.spec.ts": {
+            "sha256": "db134a2a3023e85bb157ee98748af60bc6249cc14723d95a68d115ebf7650327"
+        },
+        "packages/myst-parser/tests/roles/chem.yml": {
+            "sha256": "8cfcf36b58af322c5c2b6589cc5e43d797dffca893943749c02237b10b072d2a",
+            "cases": [
+                "chemicalFormula role parses",
+                "chem role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/cite.yml": {
+            "sha256": "221a53607d0dbb2aebe5271518399e567ea1f9be8118e5f5570a70d453229f52",
+            "cases": [
+                "cite role parses with one citation",
+                "cite role parses with multiple citations",
+                "cite:p role parses",
+                "cite:t role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/delete.yml": {
+            "sha256": "b7596e47c4a6ce947e85eddd4d8b30b67a5edbd58711fb39872af75304c1bb5a",
+            "cases": [
+                "delete role parses",
+                "del role parses",
+                "strike role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/ext.role.spec.ts": {
+            "sha256": "4672f14790c82f080b0b5e7015741d15398d32316a23b4bd5e28091feed1436b"
+        },
+        "packages/myst-parser/tests/roles/keyboard.yml": {
+            "sha256": "8b431f2032a387deb8a992338364f2acc722218df73015fdbd1c397b2da06b1d",
+            "cases": [
+                "keyboard role parses",
+                "kbd role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/math.yml": {
+            "sha256": "af18a3ff38a04b61b68ca1995961588b95ec8f355198f5844a8af40d873d9d54",
+            "cases": [
+                "math role parses",
+                "math role with typst option"
+            ]
+        },
+        "packages/myst-parser/tests/roles/reference.yml": {
+            "sha256": "5e8b4c881bc844fdc5f4d4d41c15f54842b6516743bb5751a315ded27adfdc46",
+            "cases": [
+                "ref role parses",
+                "numref role parses",
+                "eq role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/roles.spec.ts": {
+            "sha256": "77c092a9bb2e090678418fea57226e17bb303086e40bfda48eeb0f52628eba9b"
+        },
+        "packages/myst-parser/tests/roles/si.yml": {
+            "sha256": "e5faf29fadf6a06c25cc022a84b4ec6602ac9938d54e0ca71248584a94c34763",
+            "cases": [
+                "si role errors",
+                "si role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/smallcaps.yml": {
+            "sha256": "f23958e25c542ae36392470828b64fd6915a0db343803eca1a550e8accaab412",
+            "cases": [
+                "smallcaps role parses",
+                "sc role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/subscript.yml": {
+            "sha256": "c5016707b81204217bda6e1828079c93638ccd8b41f257666bc3da376701f7fd",
+            "cases": [
+                "subscript role parses",
+                "sub role parses",
+                "sub role with inline markup +",
+                "sub role with inline markup >",
+                "sub role with inline markup #",
+                "sub role with inline markup _italics_",
+                "sub role with paragraph",
+                "footnote reference with sub role"
+            ]
+        },
+        "packages/myst-parser/tests/roles/superscript.yml": {
+            "sha256": "546d9c4c8dd9b8b7ccb30f900b44b0f16979d3416fa00d8d5f839f5c3719205f",
+            "cases": [
+                "superscript role parses",
+                "sup role parses"
+            ]
+        },
+        "packages/myst-parser/tests/roles/underline.yml": {
+            "sha256": "86b9081d343e7e5800ac54da5e4a5b2bf811c47f63325f3bf0b7545c0dc999b5",
+            "cases": [
+                "underline role parses",
+                "u role parses"
+            ]
+        },
+        "packages/myst-parser/tests/smartquotes.spec.ts": {
+            "sha256": "bf1c0fb08233e621aa48bdc5545ec721e524ec8c55cbfdaed9dac363546b4dab"
+        },
+        "packages/myst-parser/tests/strikethrough.spec.ts": {
+            "sha256": "30b7da5a58881eaea5f7cb0607e6d0223c73892031173d4411913249bdf54dee"
+        },
+        "packages/myst-parser/tests/tasklists.spec.ts": {
+            "sha256": "7e99f7ff8059ee8792147477e7ab26fdaa3eb17cedcf3a55a9fe1fecd0b77a6a"
+        },
+        "packages/myst-parser/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-roles/package.json": {
+            "sha256": "4c3d3945d2c2bbed2ab72748fbe7b921da181a958c61fa6ddb4e33f37ce1b17d"
+        },
+        "packages/myst-roles/src/cite.spec.ts": {
+            "sha256": "8ac22d94c6a50857f943d088006e13226b35bf8c2374648f288ddcf1f0af48d1"
+        },
+        "packages/myst-roles/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-spec-ext/package.json": {
+            "sha256": "f7083e2d115d002f68fca2b2727b247585296e5775a1894137215a937f37aedf"
+        },
+        "packages/myst-spec-ext/tsconfig.json": {
+            "sha256": "d0ccc6d943fca1ebc340e5f7b8253a2be92704a48ad2dc26f718cca2112b00d8"
+        },
+        "packages/myst-spec/docs/examples/blocks.yml": {
+            "sha256": "63d04116481c7a79c9590721355d30499e21faff32293af97647d1223bd9aa5e",
+            "cases": [
+                "block break node",
+                "block break node - with metadata",
+                "block break node - with broken metadata",
+                "block break nodes - dividing flow content",
+                "block node - resolved from block breaks with flow content",
+                "block node - invalid nesting"
+            ]
+        },
+        "packages/myst-spec/docs/examples/cmark_spec_0.30.yml": {
+            "sha256": "649ec667c9e3599ea518568b4183d0f54b4acbeb52a57e5d7df2a312b8409b01",
+            "cases": [
+                "Tabs - example 1",
+                "Tabs - example 2",
+                "Tabs - example 3",
+                "Tabs - example 4",
+                "Tabs - example 5",
+                "Tabs - example 6",
+                "Tabs - example 7",
+                "Tabs - example 8",
+                "Tabs - example 9",
+                "Tabs - example 10",
+                "Tabs - example 11",
+                "Backslash escapes - example 12",
+                "Backslash escapes - example 13",
+                "Backslash escapes - example 14",
+                "Backslash escapes - example 15",
+                "Backslash escapes - example 16",
+                "Backslash escapes - example 17",
+                "Backslash escapes - example 18",
+                "Backslash escapes - example 19",
+                "Backslash escapes - example 20",
+                "Backslash escapes - example 21",
+                "Backslash escapes - example 22",
+                "Backslash escapes - example 23",
+                "Backslash escapes - example 24",
+                "Entity and numeric character references - example 25",
+                "Entity and numeric character references - example 26",
+                "Entity and numeric character references - example 27",
+                "Entity and numeric character references - example 28",
+                "Entity and numeric character references - example 29",
+                "Entity and numeric character references - example 30",
+                "Entity and numeric character references - example 31",
+                "Entity and numeric character references - example 32",
+                "Entity and numeric character references - example 33",
+                "Entity and numeric character references - example 34",
+                "Entity and numeric character references - example 35",
+                "Entity and numeric character references - example 36",
+                "Entity and numeric character references - example 37",
+                "Entity and numeric character references - example 38",
+                "Entity and numeric character references - example 39",
+                "Entity and numeric character references - example 40",
+                "Entity and numeric character references - example 41",
+                "Precedence - example 42",
+                "Thematic breaks - example 43",
+                "Thematic breaks - example 45",
+                "Thematic breaks - example 46",
+                "Thematic breaks - example 47",
+                "Thematic breaks - example 48",
+                "Thematic breaks - example 49",
+                "Thematic breaks - example 50",
+                "Thematic breaks - example 51",
+                "Thematic breaks - example 52",
+                "Thematic breaks - example 53",
+                "Thematic breaks - example 54",
+                "Thematic breaks - example 55",
+                "Thematic breaks - example 56",
+                "Thematic breaks - example 57",
+                "Thematic breaks - example 58",
+                "Thematic breaks - example 59",
+                "Thematic breaks - example 60",
+                "Thematic breaks - example 61",
+                "ATX headings - example 62",
+                "ATX headings - example 63",
+                "ATX headings - example 64",
+                "ATX headings - example 65",
+                "ATX headings - example 66",
+                "ATX headings - example 67",
+                "ATX headings - example 68",
+                "ATX headings - example 69",
+                "ATX headings - example 70",
+                "ATX headings - example 71",
+                "ATX headings - example 72",
+                "ATX headings - example 73",
+                "ATX headings - example 74",
+                "ATX headings - example 75",
+                "ATX headings - example 76",
+                "ATX headings - example 77",
+                "ATX headings - example 78",
+                "ATX headings - example 79",
+                "Setext headings - example 80",
+                "Setext headings - example 81",
+                "Setext headings - example 82",
+                "Setext headings - example 83",
+                "Setext headings - example 84",
+                "Setext headings - example 85",
+                "Setext headings - example 86",
+                "Setext headings - example 87",
+                "Setext headings - example 88",
+                "Setext headings - example 89",
+                "Setext headings - example 90",
+                "Setext headings - example 91",
+                "Setext headings - example 92",
+                "Setext headings - example 93",
+                "Setext headings - example 94",
+                "Setext headings - example 95",
+                "Setext headings - example 96",
+                "Setext headings - example 97",
+                "Setext headings - example 98",
+                "Setext headings - example 99",
+                "Setext headings - example 100",
+                "Setext headings - example 101",
+                "Setext headings - example 102",
+                "Setext headings - example 103",
+                "Setext headings - example 104",
+                "Setext headings - example 105",
+                "Setext headings - example 106",
+                "Indented code blocks - example 107",
+                "Indented code blocks - example 108",
+                "Indented code blocks - example 109",
+                "Indented code blocks - example 110",
+                "Indented code blocks - example 111",
+                "Indented code blocks - example 112",
+                "Indented code blocks - example 113",
+                "Indented code blocks - example 114",
+                "Indented code blocks - example 115",
+                "Indented code blocks - example 116",
+                "Indented code blocks - example 117",
+                "Indented code blocks - example 118",
+                "Fenced code blocks - example 119",
+                "Fenced code blocks - example 120",
+                "Fenced code blocks - example 121",
+                "Fenced code blocks - example 122",
+                "Fenced code blocks - example 123",
+                "Fenced code blocks - example 124",
+                "Fenced code blocks - example 125",
+                "Fenced code blocks - example 126",
+                "Fenced code blocks - example 127",
+                "Fenced code blocks - example 128",
+                "Fenced code blocks - example 129",
+                "Fenced code blocks - example 130",
+                "Fenced code blocks - example 131",
+                "Fenced code blocks - example 132",
+                "Fenced code blocks - example 133",
+                "Fenced code blocks - example 134",
+                "Fenced code blocks - example 135",
+                "Fenced code blocks - example 136",
+                "Fenced code blocks - example 137",
+                "Fenced code blocks - example 138",
+                "Fenced code blocks - example 139",
+                "Fenced code blocks - example 140",
+                "Fenced code blocks - example 141",
+                "Fenced code blocks - example 142",
+                "Fenced code blocks - example 143",
+                "Fenced code blocks - example 144",
+                "Fenced code blocks - example 145",
+                "Fenced code blocks - example 146",
+                "Fenced code blocks - example 147",
+                "HTML blocks - example 148",
+                "HTML blocks - example 149",
+                "HTML blocks - example 150",
+                "HTML blocks - example 151",
+                "HTML blocks - example 152",
+                "HTML blocks - example 153",
+                "HTML blocks - example 154",
+                "HTML blocks - example 155",
+                "HTML blocks - example 156",
+                "HTML blocks - example 157",
+                "HTML blocks - example 158",
+                "HTML blocks - example 159",
+                "HTML blocks - example 160",
+                "HTML blocks - example 161",
+                "HTML blocks - example 162",
+                "HTML blocks - example 163",
+                "HTML blocks - example 164",
+                "HTML blocks - example 165",
+                "HTML blocks - example 166",
+                "HTML blocks - example 167",
+                "HTML blocks - example 168",
+                "HTML blocks - example 169",
+                "HTML blocks - example 170",
+                "HTML blocks - example 171",
+                "HTML blocks - example 172",
+                "HTML blocks - example 173",
+                "HTML blocks - example 174",
+                "HTML blocks - example 175",
+                "HTML blocks - example 176",
+                "HTML blocks - example 177",
+                "HTML blocks - example 178",
+                "HTML blocks - example 179",
+                "HTML blocks - example 180",
+                "HTML blocks - example 181",
+                "HTML blocks - example 182",
+                "HTML blocks - example 183",
+                "HTML blocks - example 184",
+                "HTML blocks - example 185",
+                "HTML blocks - example 186",
+                "HTML blocks - example 187",
+                "HTML blocks - example 188",
+                "HTML blocks - example 189",
+                "HTML blocks - example 190",
+                "HTML blocks - example 191",
+                "Link reference definitions - example 192",
+                "Link reference definitions - example 193",
+                "Link reference definitions - example 194",
+                "Link reference definitions - example 195",
+                "Link reference definitions - example 196",
+                "Link reference definitions - example 197",
+                "Link reference definitions - example 198",
+                "Link reference definitions - example 199",
+                "Link reference definitions - example 200",
+                "Link reference definitions - example 201",
+                "Link reference definitions - example 202",
+                "Link reference definitions - example 203",
+                "Link reference definitions - example 204",
+                "Link reference definitions - example 205",
+                "Link reference definitions - example 206",
+                "Link reference definitions - example 207",
+                "Link reference definitions - example 208",
+                "Link reference definitions - example 209",
+                "Link reference definitions - example 210",
+                "Link reference definitions - example 211",
+                "Link reference definitions - example 212",
+                "Link reference definitions - example 213",
+                "Link reference definitions - example 214",
+                "Link reference definitions - example 215",
+                "Link reference definitions - example 216",
+                "Link reference definitions - example 217",
+                "Link reference definitions - example 218",
+                "Paragraphs - example 219",
+                "Paragraphs - example 220",
+                "Paragraphs - example 221",
+                "Paragraphs - example 222",
+                "Paragraphs - example 223",
+                "Paragraphs - example 224",
+                "Paragraphs - example 225",
+                "Paragraphs - example 226",
+                "Blank lines - example 227",
+                "Block quotes - example 228",
+                "Block quotes - example 229",
+                "Block quotes - example 230",
+                "Block quotes - example 231",
+                "Block quotes - example 232",
+                "Block quotes - example 233",
+                "Block quotes - example 234",
+                "Block quotes - example 235",
+                "Block quotes - example 236",
+                "Block quotes - example 237",
+                "Block quotes - example 238",
+                "Block quotes - example 239",
+                "Block quotes - example 240",
+                "Block quotes - example 241",
+                "Block quotes - example 242",
+                "Block quotes - example 243",
+                "Block quotes - example 244",
+                "Block quotes - example 245",
+                "Block quotes - example 246",
+                "Block quotes - example 247",
+                "Block quotes - example 248",
+                "Block quotes - example 249",
+                "Block quotes - example 250",
+                "Block quotes - example 251",
+                "Block quotes - example 252",
+                "List items - example 253",
+                "List items - example 254",
+                "List items - example 255",
+                "List items - example 256",
+                "List items - example 257",
+                "List items - example 258",
+                "List items - example 259",
+                "List items - example 260",
+                "List items - example 261",
+                "List items - example 262",
+                "List items - example 263",
+                "List items - example 264",
+                "List items - example 265",
+                "List items - example 266",
+                "List items - example 267",
+                "List items - example 268",
+                "List items - example 269",
+                "List items - example 270",
+                "List items - example 271",
+                "List items - example 272",
+                "List items - example 273",
+                "List items - example 274",
+                "List items - example 275",
+                "List items - example 276",
+                "List items - example 277",
+                "List items - example 278",
+                "List items - example 279",
+                "List items - example 280",
+                "List items - example 281",
+                "List items - example 282",
+                "List items - example 283",
+                "List items - example 284",
+                "List items - example 285",
+                "List items - example 286",
+                "List items - example 287",
+                "List items - example 288",
+                "List items - example 289",
+                "List items - example 290",
+                "List items - example 291",
+                "List items - example 292",
+                "List items - example 293",
+                "List items - example 294",
+                "List items - example 295",
+                "List items - example 296",
+                "List items - example 297",
+                "List items - example 298",
+                "List items - example 299",
+                "List items - example 300",
+                "Lists - example 301",
+                "Lists - example 302",
+                "Lists - example 303",
+                "Lists - example 304",
+                "Lists - example 305",
+                "Lists - example 306",
+                "Lists - example 307",
+                "Lists - example 308",
+                "Lists - example 309",
+                "Lists - example 310",
+                "Lists - example 311",
+                "Lists - example 312",
+                "Lists - example 313",
+                "Lists - example 314",
+                "Lists - example 315",
+                "Lists - example 316",
+                "Lists - example 317",
+                "Lists - example 318",
+                "Lists - example 319",
+                "Lists - example 320",
+                "Lists - example 321",
+                "Lists - example 322",
+                "Lists - example 323",
+                "Lists - example 324",
+                "Lists - example 325",
+                "Lists - example 326",
+                "Inlines - example 327",
+                "Code spans - example 328",
+                "Code spans - example 329",
+                "Code spans - example 330",
+                "Code spans - example 331",
+                "Code spans - example 332",
+                "Code spans - example 333",
+                "Code spans - example 334",
+                "Code spans - example 335",
+                "Code spans - example 336",
+                "Code spans - example 337",
+                "Code spans - example 338",
+                "Code spans - example 339",
+                "Code spans - example 340",
+                "Code spans - example 341",
+                "Code spans - example 342",
+                "Code spans - example 343",
+                "Code spans - example 344",
+                "Code spans - example 345",
+                "Code spans - example 346",
+                "Code spans - example 347",
+                "Code spans - example 348",
+                "Code spans - example 349",
+                "Emphasis and strong emphasis - example 350",
+                "Emphasis and strong emphasis - example 351",
+                "Emphasis and strong emphasis - example 352",
+                "Emphasis and strong emphasis - example 353",
+                "Emphasis and strong emphasis - example 354",
+                "Emphasis and strong emphasis - example 355",
+                "Emphasis and strong emphasis - example 356",
+                "Emphasis and strong emphasis - example 357",
+                "Emphasis and strong emphasis - example 358",
+                "Emphasis and strong emphasis - example 359",
+                "Emphasis and strong emphasis - example 360",
+                "Emphasis and strong emphasis - example 361",
+                "Emphasis and strong emphasis - example 362",
+                "Emphasis and strong emphasis - example 363",
+                "Emphasis and strong emphasis - example 364",
+                "Emphasis and strong emphasis - example 365",
+                "Emphasis and strong emphasis - example 366",
+                "Emphasis and strong emphasis - example 367",
+                "Emphasis and strong emphasis - example 368",
+                "Emphasis and strong emphasis - example 369",
+                "Emphasis and strong emphasis - example 370",
+                "Emphasis and strong emphasis - example 371",
+                "Emphasis and strong emphasis - example 372",
+                "Emphasis and strong emphasis - example 373",
+                "Emphasis and strong emphasis - example 374",
+                "Emphasis and strong emphasis - example 375",
+                "Emphasis and strong emphasis - example 376",
+                "Emphasis and strong emphasis - example 377",
+                "Emphasis and strong emphasis - example 378",
+                "Emphasis and strong emphasis - example 379",
+                "Emphasis and strong emphasis - example 380",
+                "Emphasis and strong emphasis - example 381",
+                "Emphasis and strong emphasis - example 382",
+                "Emphasis and strong emphasis - example 383",
+                "Emphasis and strong emphasis - example 384",
+                "Emphasis and strong emphasis - example 385",
+                "Emphasis and strong emphasis - example 386",
+                "Emphasis and strong emphasis - example 387",
+                "Emphasis and strong emphasis - example 388",
+                "Emphasis and strong emphasis - example 389",
+                "Emphasis and strong emphasis - example 390",
+                "Emphasis and strong emphasis - example 391",
+                "Emphasis and strong emphasis - example 392",
+                "Emphasis and strong emphasis - example 393",
+                "Emphasis and strong emphasis - example 394",
+                "Emphasis and strong emphasis - example 395",
+                "Emphasis and strong emphasis - example 396",
+                "Emphasis and strong emphasis - example 397",
+                "Emphasis and strong emphasis - example 398",
+                "Emphasis and strong emphasis - example 399",
+                "Emphasis and strong emphasis - example 400",
+                "Emphasis and strong emphasis - example 401",
+                "Emphasis and strong emphasis - example 402",
+                "Emphasis and strong emphasis - example 403",
+                "Emphasis and strong emphasis - example 404",
+                "Emphasis and strong emphasis - example 405",
+                "Emphasis and strong emphasis - example 406",
+                "Emphasis and strong emphasis - example 407",
+                "Emphasis and strong emphasis - example 408",
+                "Emphasis and strong emphasis - example 409",
+                "Emphasis and strong emphasis - example 410",
+                "Emphasis and strong emphasis - example 411",
+                "Emphasis and strong emphasis - example 412",
+                "Emphasis and strong emphasis - example 413",
+                "Emphasis and strong emphasis - example 414",
+                "Emphasis and strong emphasis - example 415",
+                "Emphasis and strong emphasis - example 416",
+                "Emphasis and strong emphasis - example 417",
+                "Emphasis and strong emphasis - example 418",
+                "Emphasis and strong emphasis - example 419",
+                "Emphasis and strong emphasis - example 420",
+                "Emphasis and strong emphasis - example 421",
+                "Emphasis and strong emphasis - example 422",
+                "Emphasis and strong emphasis - example 423",
+                "Emphasis and strong emphasis - example 424",
+                "Emphasis and strong emphasis - example 425",
+                "Emphasis and strong emphasis - example 426",
+                "Emphasis and strong emphasis - example 427",
+                "Emphasis and strong emphasis - example 428",
+                "Emphasis and strong emphasis - example 429",
+                "Emphasis and strong emphasis - example 430",
+                "Emphasis and strong emphasis - example 431",
+                "Emphasis and strong emphasis - example 432",
+                "Emphasis and strong emphasis - example 433",
+                "Emphasis and strong emphasis - example 434",
+                "Emphasis and strong emphasis - example 435",
+                "Emphasis and strong emphasis - example 436",
+                "Emphasis and strong emphasis - example 437",
+                "Emphasis and strong emphasis - example 438",
+                "Emphasis and strong emphasis - example 439",
+                "Emphasis and strong emphasis - example 440",
+                "Emphasis and strong emphasis - example 441",
+                "Emphasis and strong emphasis - example 442",
+                "Emphasis and strong emphasis - example 443",
+                "Emphasis and strong emphasis - example 444",
+                "Emphasis and strong emphasis - example 445",
+                "Emphasis and strong emphasis - example 446",
+                "Emphasis and strong emphasis - example 447",
+                "Emphasis and strong emphasis - example 448",
+                "Emphasis and strong emphasis - example 449",
+                "Emphasis and strong emphasis - example 450",
+                "Emphasis and strong emphasis - example 451",
+                "Emphasis and strong emphasis - example 452",
+                "Emphasis and strong emphasis - example 453",
+                "Emphasis and strong emphasis - example 454",
+                "Emphasis and strong emphasis - example 455",
+                "Emphasis and strong emphasis - example 456",
+                "Emphasis and strong emphasis - example 457",
+                "Emphasis and strong emphasis - example 458",
+                "Emphasis and strong emphasis - example 459",
+                "Emphasis and strong emphasis - example 460",
+                "Emphasis and strong emphasis - example 461",
+                "Emphasis and strong emphasis - example 462",
+                "Emphasis and strong emphasis - example 463",
+                "Emphasis and strong emphasis - example 464",
+                "Emphasis and strong emphasis - example 465",
+                "Emphasis and strong emphasis - example 466",
+                "Emphasis and strong emphasis - example 467",
+                "Emphasis and strong emphasis - example 468",
+                "Emphasis and strong emphasis - example 469",
+                "Emphasis and strong emphasis - example 470",
+                "Emphasis and strong emphasis - example 471",
+                "Emphasis and strong emphasis - example 472",
+                "Emphasis and strong emphasis - example 473",
+                "Emphasis and strong emphasis - example 474",
+                "Emphasis and strong emphasis - example 475",
+                "Emphasis and strong emphasis - example 476",
+                "Emphasis and strong emphasis - example 477",
+                "Emphasis and strong emphasis - example 478",
+                "Emphasis and strong emphasis - example 479",
+                "Emphasis and strong emphasis - example 480",
+                "Links - example 481",
+                "Links - example 482",
+                "Links - example 483",
+                "Links - example 484",
+                "Links - example 485",
+                "Links - example 486",
+                "Links - example 487",
+                "Links - example 488",
+                "Links - example 489",
+                "Links - example 490",
+                "Links - example 491",
+                "Links - example 492",
+                "Links - example 493",
+                "Links - example 494",
+                "Links - example 495",
+                "Links - example 496",
+                "Links - example 497",
+                "Links - example 498",
+                "Links - example 499",
+                "Links - example 500",
+                "Links - example 501",
+                "Links - example 502",
+                "Links - example 503",
+                "Links - example 504",
+                "Links - example 505",
+                "Links - example 506",
+                "Links - example 507",
+                "Links - example 508",
+                "Links - example 509",
+                "Links - example 510",
+                "Links - example 511",
+                "Links - example 512",
+                "Links - example 513",
+                "Links - example 514",
+                "Links - example 515",
+                "Links - example 516",
+                "Links - example 517",
+                "Links - example 518",
+                "Links - example 519",
+                "Links - example 520",
+                "Links - example 521",
+                "Links - example 522",
+                "Links - example 523",
+                "Links - example 524",
+                "Links - example 525",
+                "Links - example 526",
+                "Links - example 527",
+                "Links - example 528",
+                "Links - example 529",
+                "Links - example 530",
+                "Links - example 531",
+                "Links - example 532",
+                "Links - example 533",
+                "Links - example 534",
+                "Links - example 535",
+                "Links - example 536",
+                "Links - example 537",
+                "Links - example 538",
+                "Links - example 539",
+                "Links - example 540",
+                "Links - example 541",
+                "Links - example 542",
+                "Links - example 543",
+                "Links - example 544",
+                "Links - example 545",
+                "Links - example 546",
+                "Links - example 547",
+                "Links - example 548",
+                "Links - example 549",
+                "Links - example 550",
+                "Links - example 551",
+                "Links - example 552",
+                "Links - example 553",
+                "Links - example 554",
+                "Links - example 555",
+                "Links - example 556",
+                "Links - example 557",
+                "Links - example 558",
+                "Links - example 559",
+                "Links - example 560",
+                "Links - example 561",
+                "Links - example 562",
+                "Links - example 563",
+                "Links - example 564",
+                "Links - example 565",
+                "Links - example 566",
+                "Links - example 567",
+                "Links - example 568",
+                "Links - example 569",
+                "Links - example 570",
+                "Images - example 571",
+                "Images - example 572",
+                "Images - example 573",
+                "Images - example 574",
+                "Images - example 575",
+                "Images - example 576",
+                "Images - example 577",
+                "Images - example 578",
+                "Images - example 579",
+                "Images - example 580",
+                "Images - example 581",
+                "Images - example 582",
+                "Images - example 583",
+                "Images - example 584",
+                "Images - example 585",
+                "Images - example 586",
+                "Images - example 587",
+                "Images - example 588",
+                "Images - example 589",
+                "Images - example 590",
+                "Images - example 591",
+                "Images - example 592",
+                "Autolinks - example 593",
+                "Autolinks - example 594",
+                "Autolinks - example 595",
+                "Autolinks - example 596",
+                "Autolinks - example 597",
+                "Autolinks - example 598",
+                "Autolinks - example 599",
+                "Autolinks - example 600",
+                "Autolinks - example 601",
+                "Autolinks - example 602",
+                "Autolinks - example 603",
+                "Autolinks - example 604",
+                "Autolinks - example 605",
+                "Autolinks - example 606",
+                "Autolinks - example 607",
+                "Autolinks - example 608",
+                "Autolinks - example 609",
+                "Autolinks - example 610",
+                "Autolinks - example 611",
+                "Raw HTML - example 612",
+                "Raw HTML - example 613",
+                "Raw HTML - example 614",
+                "Raw HTML - example 615",
+                "Raw HTML - example 616",
+                "Raw HTML - example 617",
+                "Raw HTML - example 618",
+                "Raw HTML - example 619",
+                "Raw HTML - example 620",
+                "Raw HTML - example 621",
+                "Raw HTML - example 622",
+                "Raw HTML - example 623",
+                "Raw HTML - example 624",
+                "Raw HTML - example 625",
+                "Raw HTML - example 626",
+                "Raw HTML - example 627",
+                "Raw HTML - example 628",
+                "Raw HTML - example 629",
+                "Raw HTML - example 630",
+                "Raw HTML - example 631",
+                "Raw HTML - example 632",
+                "Hard line breaks - example 633",
+                "Hard line breaks - example 634",
+                "Hard line breaks - example 635",
+                "Hard line breaks - example 636",
+                "Hard line breaks - example 637",
+                "Hard line breaks - example 638",
+                "Hard line breaks - example 639",
+                "Hard line breaks - example 640",
+                "Hard line breaks - example 641",
+                "Hard line breaks - example 642",
+                "Hard line breaks - example 643",
+                "Hard line breaks - example 644",
+                "Hard line breaks - example 645",
+                "Hard line breaks - example 646",
+                "Hard line breaks - example 647",
+                "Soft line breaks - example 648",
+                "Soft line breaks - example 649",
+                "Textual content - example 650",
+                "Textual content - example 651",
+                "Textual content - example 652"
+            ]
+        },
+        "packages/myst-spec/docs/examples/comments.yml": {
+            "sha256": "4536f93c333b20ce02e7417b55691519056072289450b75132f0ce213041853a",
+            "cases": [
+                "Simple comment",
+                "Comment between paragraphs",
+                "Comment with script tag"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.basic.yml": {
+            "sha256": "19c3f8b3417ee1d91813bd553e0eb8469ed5f54075a75a0608f2744a43c72af7",
+            "cases": [
+                "root node - empty",
+                "root node - invalid type",
+                "text node",
+                "paragraph node",
+                "paragraph node - invalid nesting",
+                "heading node",
+                "heading node - invalid depth",
+                "heading node - invalid children",
+                "thematic break node",
+                "blockquote node",
+                "blockquote node - invalid children",
+                "list node - empty",
+                "list node",
+                "list node - with properties",
+                "list node - invalid children",
+                "listitem node",
+                "listitem node - invalid with other node types",
+                "html node",
+                "code node",
+                "code node - with lang",
+                "code node - with lang and meta",
+                "code node - invalid with only meta",
+                "definition node",
+                "definition node - with optional properties",
+                "strong node",
+                "strong node - invalid children",
+                "inline code node",
+                "break node",
+                "link node",
+                "link node - with optional properties",
+                "emaphasis node - with link child",
+                "link node - with emphasis child",
+                "link node - with invalid link child",
+                "emaphasis node - with link child",
+                "link node - with strong child",
+                "link node - with invalid link child",
+                "image node",
+                "image node - with optional properties",
+                "link reference node",
+                "link reference node - with optional properties",
+                "link reference node - invalid referenceType",
+                "link reference node - no referenceType",
+                "link reference node - invalid link child",
+                "link reference node - invalid link reference child",
+                "image reference node",
+                "image reference node - with optional properties",
+                "image reference node - invalid missing properties"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.breaks.yml": {
+            "sha256": "20ae006fbf596bc65512d3e4b94de0e4a11d917ecc6399d31fbd0e40a8a89011",
+            "cases": [
+                "CommonMark hard breaks",
+                "CommonMark thematic breaks"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.code.yml": {
+            "sha256": "d6af0961143e821621af98b7afa0e8d0ca5752fee3377b40f6fc1cd691ce2f9e",
+            "cases": [
+                "CommonMark code block",
+                "CommonMark python code block",
+                "CommonMark indented code block"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.headings.yml": {
+            "sha256": "4c07c06994408b5a986fdf04b1fd4398efae5afca881c89e719ca0cc230757eb",
+            "cases": [
+                "CommonMark headings",
+                "CommonMark setext headings"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.html.yml": {
+            "sha256": "54b59f79db4936ababb8d0f9be59b32c5c237abe5375836ea7007f379c2fa91f",
+            "cases": [
+                "CommonMark HTML"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.links.yml": {
+            "sha256": "e9f552f14e9c2b778fed56cf9e37d60efc1e61f01c55926989e72f8c267c23fb",
+            "cases": [
+                "CommonMark link reference",
+                "CommonMark auto link",
+                "CommonMark inline link",
+                "CommonMark inline image"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.lists.yml": {
+            "sha256": "3a1d6377749f296ee1aa5b07ee478547b69e2b56701be9f5dc581a05ca2da064",
+            "cases": [
+                "CommonMark bullet list",
+                "CommonMark numbered list"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.paragraphs.yml": {
+            "sha256": "91b917876c90227509a232d8509da904e868c510140a341764776af5dc74d6c6",
+            "cases": [
+                "CommonMark simple paragraph",
+                "CommomMark two paragraphs",
+                "CommonMark inline styling"
+            ]
+        },
+        "packages/myst-spec/docs/examples/commonmark.quotes.yml": {
+            "sha256": "f50c3e33bc6f02e55461217fa16319f0d8a8c7b5efbfdb483dbb2dcfeed8c358",
+            "cases": [
+                "CommonMark blockquote"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.admonitions.simple.yml": {
+            "sha256": "68d96f0ab95f649bd4ed1667597b65a0a7f285b283f42e7eb787be8471b8746b",
+            "cases": [
+                "attention",
+                "caution",
+                "danger",
+                "error",
+                "important",
+                "hint",
+                "note",
+                "seealso",
+                "tip",
+                "warning"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.admonitions.yml": {
+            "sha256": "0fe46a9193bdaa452441e0e7f84f2ad09d2e7a346c089257de47bc7717d809f5",
+            "cases": [
+                "Simple Admonition",
+                "Note with no title",
+                "Note with split title",
+                "Danger on a single line",
+                "Admonition with overridding class name",
+                "See Also with overridding class name of tip"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.code.yml": {
+            "sha256": "b0ae2de736fefa00f0ab087d278c3f7afdf937cac56c36173ca374d4dce7642e",
+            "cases": [
+                "Code directive",
+                "Code directive, starting line",
+                "Code-block starting line",
+                "Code-block directive shows line numbers without explicit linenos flag",
+                "Code-block directive cannot spcify linenos without showing them",
+                "Code-block directive - emphasize lines"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.figure.yml": {
+            "sha256": "39aa3a39d70e171985423b89d7feb61e3be759047638055b90e22b2be64a426f",
+            "cases": [
+                "Simple figure",
+                "Named figure with a caption in a paragraph",
+                "Named figure with a caption in a no alt",
+                "Named figure with no space between options in directive",
+                "Two figures"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.generic.yml": {
+            "sha256": "f6967136c315b58fdaf39c984324c547e6944c915fc4ee51a374978e77bd4531",
+            "cases": [
+                "Unknown directive",
+                "Unknown directive with args"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.image.yml": {
+            "sha256": "9adff662b8d400a6a918003f9a833d94c047d53397807b400b758d4fcfdfe127",
+            "cases": [
+                "Standard markdown image",
+                "Image directive",
+                "Image directive, left"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.math.yml": {
+            "sha256": "c99ce5f2016a68075786433c3997b5eaaf93f3a47a5fd2ff06a796fb5160c390",
+            "cases": [
+                "Math directive",
+                "Math directive with label"
+            ]
+        },
+        "packages/myst-spec/docs/examples/directives.table.yml": {
+            "sha256": "8a4195a1f49a8fc1eb435da3fd56a76ea55826a1c4084dba741c4051fd057bcc",
+            "cases": [
+                "Basic table",
+                "Basic list table"
+            ]
+        },
+        "packages/myst-spec/docs/examples/footnotes.yml": {
+            "sha256": "d0405f49d8b357a8738e3d3a7fbaa457d57c6c8e95458bfd7be50324ab7b52ad",
+            "cases": [
+                "Basic footnotes"
+            ]
+        },
+        "packages/myst-spec/docs/examples/references.equations.yml": {
+            "sha256": "2bb5c1f3a74082305b5a077567b303311f63f6f20bfd4d5ec154dc5bf7bb7638",
+            "cases": [
+                "Invalid equation reference",
+                "Default equation reference",
+                "Link-style equation reference"
+            ]
+        },
+        "packages/myst-spec/docs/examples/references.figures.yml": {
+            "sha256": "b4a9f77ea1c99ea1abfffa8e5bb732304617685b1b1d6fe59b6959fe745ea0fb",
+            "cases": [
+                "Invalid figure reference without value",
+                "Invalid figure reference",
+                "Invalid figure reference with messy label",
+                "Figure reference with default numref",
+                "Figure reference with custom numref",
+                "Figure reference with default ref",
+                "Figure reference with custom ref",
+                "Link-style figure reference with default ref",
+                "Link-style figure reference with custom ref"
+            ]
+        },
+        "packages/myst-spec/docs/examples/references.headings.yml": {
+            "sha256": "314144853b12d950b71a37597f6f6daf1047047d79b4c9400e07e921cd8e3e49",
+            "cases": [
+                "Default header reference",
+                "Custom header reference",
+                "Link-style default header reference",
+                "Link-style custom header reference"
+            ]
+        },
+        "packages/myst-spec/docs/examples/references.tables.yml": {
+            "sha256": "d252514681affb2e0ee4c33b15e33e4d5ad5ee3c1c20eab9dee9a9657844730d",
+            "cases": [
+                "Table figure reference with default numref",
+                "Table figure reference with custom numref",
+                "Table figure reference with default ref",
+                "Table figure reference with custom ref",
+                "Link-style table figure reference with default ref",
+                "Link-style table figure reference with custom ref"
+            ]
+        },
+        "packages/myst-spec/docs/examples/references.target.yml": {
+            "sha256": "a99fa6ab9314b242fe800914f605ab5d31e174b8a8e471839f311c348cd605d6",
+            "cases": [
+                "Header with id label"
+            ]
+        },
+        "packages/myst-spec/docs/examples/roles.generic.yml": {
+            "sha256": "aa2411809dec46b23703a0821c04acb9afde87a703f5080111abf8b8eaaab430",
+            "cases": [
+                "unknown role",
+                "unknown role - no value",
+                "unknown role - invalid no kind"
+            ]
+        },
+        "packages/myst-spec/docs/examples/roles.html.abbr.yml": {
+            "sha256": "37782fbeea196fb9ed3f152261dfcf97aad90977dbaeaac896fda3c36efa2432",
+            "cases": [
+                "Inline Abbreviation",
+                "Abbreviation Without Title",
+                "Abbreviation with poor brackets"
+            ]
+        },
+        "packages/myst-spec/docs/examples/roles.html.yml": {
+            "sha256": "b2e6e17aea29c30edc815cf7bc5132f2908aa5fcad2c67e53773e9d0386ba44f",
+            "cases": [
+                "Subscript",
+                "Subscript spelled out",
+                "Superscript",
+                "Superscript spelled out"
+            ]
+        },
+        "packages/myst-spec/docs/examples/roles.math.yml": {
+            "sha256": "906d647702a5719cd88b3980dfa69463606a3e96eabfc0bae71abc7355897ee8",
+            "cases": [
+                "Math role"
+            ]
+        },
+        "packages/myst-spec/docs/examples/unist.yml": {
+            "sha256": "b3d19f0fd35ba41c47e0f5cb2daf438975f1c722bd2fb9879f42dd768d8a93c7",
+            "cases": [
+                "unist - node metadata",
+                "unist - invalid node metadata"
+            ]
+        },
+        "packages/myst-spec/docs/myst.yml": {
+            "sha256": "be455c3abe44cc05c5355f01a437b874015841bc4d45af1e60252711514a23e8",
+            "cases": []
+        },
+        "packages/myst-spec/package.json": {
+            "sha256": "6d70dbcf74e3a6e4caef510d1caaa2d913fdfc4dbe9d855a6b409378fed737b8"
+        },
+        "packages/myst-spec/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-to-html/package.json": {
+            "sha256": "3619d70d81f0f93694ac1b8015aa96ef2d2c1e842040281aa7b4f27a9bc48200"
+        },
+        "packages/myst-to-html/tests/html.spec.ts": {
+            "sha256": "5607702433738bd82104585e85adc467201f041519c12fd10eec380246914a16"
+        },
+        "packages/myst-to-html/tests/schema.spec.ts": {
+            "sha256": "a075c2fbe4c46b4a2e6f3f17c11d80d724e54e7f25663b70b962d291ee0fc23a"
+        },
+        "packages/myst-to-html/tests/state.spec.ts": {
+            "sha256": "a265b0289f4fa64094f187dabef20e1405af9277240e2421ab992ef849191a3e"
+        },
+        "packages/myst-to-html/tests/transforms/addenumerators.spec.ts": {
+            "sha256": "856fd5dfb3f9ee1505897b3cfd64a04ea895cd128c0875e36978674bdb6d6c5c"
+        },
+        "packages/myst-to-html/tests/transforms/addenumerators.yml": {
+            "sha256": "be0d038832e912313e82eefe45503edc0771494ede4981e8b735bc9370a94b06",
+            "cases": [
+                "heading numbering",
+                "heading numbering - unnumbered",
+                "heading numbering - levels",
+                "heading numbering - disabled",
+                "math numbering",
+                "math numbering - inside directive",
+                "math numbering - disabled",
+                "container numbering",
+                "container numbering - disabled"
+            ]
+        },
+        "packages/myst-to-html/tests/transforms/converthtml.spec.ts": {
+            "sha256": "662660ce5cec79035834d8eb987461ac982819ac9df14c59bcdeffd5201539ac"
+        },
+        "packages/myst-to-html/tests/transforms/converthtml.yml": {
+            "sha256": "da59dd8bb80f6d3b71b2133398ac253f55d49fb405a56dd4775495e8007c7e3b",
+            "cases": [
+                "paragraph",
+                "style",
+                "image",
+                "table",
+                "horizontal rule",
+                "break",
+                "break"
+            ]
+        },
+        "packages/myst-to-html/tests/utils.spec.ts": {
+            "sha256": "031124a51303d0194f8c5485a30ef98fc7e7898c89eebb38e4b681d2df9cd450"
+        },
+        "packages/myst-to-html/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        },
+        "packages/myst-transforms/docs/_toc.yml": {
+            "sha256": "5924778f5f373f80f404c8f744e54fc022ca02498c460ef0aa46f38b520034df",
+            "cases": []
+        },
+        "packages/myst-transforms/docs/myst.yml": {
+            "sha256": "d824266ab00ddab6c2affa58806f81d2d02f9ae532211a8d370ee308272e82c6",
+            "cases": []
+        },
+        "packages/myst-transforms/package.json": {
+            "sha256": "ca00cf109cb4cf0d243fa5e9eac5d95647d5e842a669a049af0f7e15f7f86ee8"
+        },
+        "packages/myst-transforms/src/admonitions.spec.ts": {
+            "sha256": "f9329554a65663316bd05c33e257b71d6ce8a7d4456f8737d9d3ea43a1d0e8da"
+        },
+        "packages/myst-transforms/src/blockquote.spec.ts": {
+            "sha256": "746f9544beaeff6afd28488f530135d1ab842e93b8f967995485c366391d2c87"
+        },
+        "packages/myst-transforms/src/blocks.spec.ts": {
+            "sha256": "9b73d93e9679ff342bbb565e96fdb4a6b9786dd3e35ef5519f2fa3870f924bf1"
+        },
+        "packages/myst-transforms/src/code.spec.ts": {
+            "sha256": "10dddeffab1d1e69ec1afda71e9fc1b94d554bdf88d245299cff8169019873a3"
+        },
+        "packages/myst-transforms/src/containers.spec.ts": {
+            "sha256": "087195cd929461fce8c2347d88d5d06ba35e6349a126037b4b6929ab51961802"
+        },
+        "packages/myst-transforms/src/enumerate.spec.ts": {
+            "sha256": "e5eb39395eaf62684fd994b7755c60078315b46ff596f6d909ea94f7c6711b7b"
+        },
+        "packages/myst-transforms/src/footnotes.spec.ts": {
+            "sha256": "2e3000967d2921283a64371bcb20acf11e0eb434d0da5a0d37c0d20f1b9bebd2"
+        },
+        "packages/myst-transforms/src/frontmatter.spec.ts": {
+            "sha256": "5f55ef8df64569ca524a09f4338f51ba33cf9c592b5fa98012b6cbad115066d9"
+        },
+        "packages/myst-transforms/src/headings.spec.ts": {
+            "sha256": "0760d6a7f70d90750616647b9adaf341ebfd8c5321a2d91ece23f4410cc3b1fa"
+        },
+        "packages/myst-transforms/src/html.spec.ts": {
+            "sha256": "feaab59245ec03536cd0a9560bcc0556e2ebe113186a0ec73bf51c3e8a0218d7"
+        },
+        "packages/myst-transforms/src/include.spec.ts": {
+            "sha256": "a6ca8465a47d1ecf64786615b18e39c2e8c90d50423234d20bcfd13ee9d14b52"
+        },
+        "packages/myst-transforms/src/indices.spec.ts": {
+            "sha256": "2ecfaba263df6690cd67c2d38c304fa86c7ad59a33043caffa2024136f99eb13"
+        },
+        "packages/myst-transforms/src/joinGates.spec.ts": {
+            "sha256": "eb58fff3b0a8143005557849c8c6bd34e960712b0ee1db36379936ec7cb95e35"
+        },
+        "packages/myst-transforms/src/keys.spec.ts": {
+            "sha256": "f0c61896e26f090ea663090fc5e907915f4e7ba2ad502e5434b818131d076680"
+        },
+        "packages/myst-transforms/src/links/doi.spec.ts": {
+            "sha256": "c2cc485ee913ddd3c2db2c24f01e388bfc09a70ed36846866147e355569d9769"
+        },
+        "packages/myst-transforms/src/links/github.spec.ts": {
+            "sha256": "1bf417f588b3ee508e6c8f89ab9b0344040c26ff5546e3be0fd993a282086baa"
+        },
+        "packages/myst-transforms/src/links/myst.spec.ts": {
+            "sha256": "d9ca2934d4a3b2d2f8d2c02415b26f965e178bf2a00fa6aae23dbf2beba58008"
+        },
+        "packages/myst-transforms/src/links/plugin.spec.ts": {
+            "sha256": "a9940e7d84a35d6f35e9456b6ba15416014a1bfdb41b8070e73e5aca6fe7d0fc"
+        },
+        "packages/myst-transforms/src/links/sphinx.spec.ts": {
+            "sha256": "044f890db45628da39fef07ccfbcf519f0c0a0661411eb598fa74617e774f636"
+        },
+        "packages/myst-transforms/src/links/wiki.spec.ts": {
+            "sha256": "1a51b34b27e0289b496d82df1d35d1ee4d39a5d9ea367cf757fa7c586a4d06bc"
+        },
+        "packages/myst-transforms/src/math.spec.ts": {
+            "sha256": "501b4538841a9472d242c910e573bfdf4a97ded7987ce7ae1d4182ac8f6325c4"
+        },
+        "packages/myst-transforms/src/mathSimplifications.spec.ts": {
+            "sha256": "d63443853e1edcfc76d4856b866160033d66250c7aa9c65a2c6c2a767b45aca5"
+        },
+        "packages/myst-transforms/src/removeUnicode.spec.ts": {
+            "sha256": "0aa643e7328c613484f8662c9bf1929044682ad00382fe19aa2a9f519183c8b6"
+        },
+        "packages/myst-transforms/src/toc.spec.ts": {
+            "sha256": "c4db97c590ba1eba9b0dc847da1b0aa792e04b200d928c36228914b80b504f43"
+        },
+        "packages/myst-transforms/src/unnest.spec.ts": {
+            "sha256": "a73d63169835042631868ae1a602380eddbe3f3305c8b00182e8ab2c96d2cd14"
+        },
+        "packages/myst-transforms/tests/abbreviations.spec.ts": {
+            "sha256": "6ed33ab59dc2faad762dfc6dbb2ac0f129741c6bd51c1b55ef3214c8e10ecc63"
+        },
+        "packages/myst-transforms/tests/abbreviations.yml": {
+            "sha256": "7642dfaafd7ac4cad6201fd691503272d4404f3be9d006626eb0bffb156f0651",
+            "cases": [
+                "simple abbreviation replacement",
+                "Abbreviation in heading",
+                "Abbreviation with null",
+                "Abbreviation first time long"
+            ]
+        },
+        "packages/myst-transforms/tests/enumerators.spec.ts": {
+            "sha256": "cb24454fc8d072c8d289e8a75463b6c498e9612da0e3a448a4a0441cfaad96b0"
+        },
+        "packages/myst-transforms/tests/enumerators.yml": {
+            "sha256": "2fcc17147ce580d8d8d4ca8db3b9bae6a78bd203ea873b340577d00e8ea6f357",
+            "cases": [
+                "heading numbering",
+                "heading numbering - unnumbered",
+                "heading numbering - levels",
+                "heading numbering - disabled",
+                "math numbering",
+                "math numbering - inside directive",
+                "math numbering - disabled",
+                "container numbering",
+                "container numbering - disabled",
+                "heading numbering with start",
+                "heading numbering with enumerator"
+            ]
+        },
+        "packages/myst-transforms/tests/html.spec.ts": {
+            "sha256": "3b55195232742d64d7aaad2f04a50f257c9fda29b064e53c3e22639ff76a113b"
+        },
+        "packages/myst-transforms/tests/html.yml": {
+            "sha256": "e23cc614aa2e1efd82a321413be2efa24f8c895844d61acd0bac8636d2263a23",
+            "cases": [
+                "paragraph",
+                "style",
+                "image",
+                "table",
+                "horizontal rule",
+                "break",
+                "break",
+                "inline elements",
+                "kbd tag"
+            ]
+        },
+        "packages/myst-transforms/tsconfig.json": {
+            "sha256": "4bbf002877012f07c58586e40ec1f09451080f621f67343b3c72e165699bcc98"
+        }
+    },
+    "license": {
+        "name": "MIT",
+        "file": "LICENSE",
+        "sha256": "e0172292abee956e6787f3316a870efa50bbc9d217db774c6dcaad353512c6be"
+    }
+}

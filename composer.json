@@ -1,0 +1,42 @@
+{
+  "name": "splitice/mystmd",
+  "description": "MyST Markdown parsing, AST, extensible directives and HTML rendering for PHP",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.4",
+    "ext-dom": "*",
+    "ext-intl": "*",
+    "ext-mbstring": "*",
+    "colinodell/json5": "^3.0",
+    "league/commonmark": "^2.7",
+    "symfony/yaml": "^7.4.20 || ^8.1.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.5",
+    "brianium/paratest": "^7.16",
+    "phpstan/phpstan": "^2.1",
+    "phan/phan": "^6.0.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Splitice\\Mystmd\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Splitice\\Mystmd\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "@test:paratest",
+    "test:phpunit": "php -d xdebug.mode=off vendor/bin/phpunit --no-progress",
+    "test:paratest": "php -d xdebug.mode=off vendor/bin/paratest --processes=4 --no-progress",
+    "phpstan": "php vendor/bin/phpstan analyse --no-progress --memory-limit=512M",
+    "phan": "php vendor/bin/phan --allow-polyfill-parser --no-progress-bar --no-color"
+  },
+  "config": {
+    "sort-packages": true,
+    "process-timeout": 600
+  }
+}

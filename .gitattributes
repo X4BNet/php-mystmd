@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# These are byte-for-byte upstream imports verified against their manifest.
+tests/Fixtures/upstream/** -text
+resources/licenses/** -text
