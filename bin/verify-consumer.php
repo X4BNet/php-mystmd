@@ -21,6 +21,11 @@ if (!is_resource($process) || proc_close($process) !== 0) {
     fwrite(STDERR, "Consumer dependency installation failed in $directory\n");
     exit(1);
 }
+$installedResources = $directory . '/vendor/splitice/mystmd/resources';
+if (!rename($installedResources, $directory . '/removed-package-resources')) {
+    fwrite(STDERR, "Unable to isolate the consumer from package resource files in $directory\n");
+    exit(1);
+}
 $probe = <<<'PHP'
 <?php
 require __DIR__ . '/vendor/autoload.php';

@@ -6,6 +6,7 @@ namespace Splitice\Mystmd\Extension;
 
 use Splitice\Mystmd\Definition;
 use Splitice\Mystmd\Internal\BuiltInDirectives;
+use Splitice\Mystmd\Internal\RuntimeResources;
 use Splitice\Mystmd\Parser;
 use Splitice\Mystmd\Registry;
 
@@ -20,7 +21,7 @@ final class FirstPartyExtension implements ExtensionInterface
     /** Install only the requested packages into this converter's registry. */
     public function register(Registry $registry): void
     {
-        $catalog = json_decode((string)file_get_contents(__DIR__ . '/../../resources/first-party-definitions.json'), true, flags: JSON_THROW_ON_ERROR);
+        $catalog = RuntimeResources::firstPartyDefinitions();
         foreach ($this->packages as $package) {
             if (!isset($catalog[$package])) {
                 throw new \InvalidArgumentException('Unknown first-party extension: ' . $package);

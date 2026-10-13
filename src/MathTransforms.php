@@ -39,7 +39,7 @@ final class MathTransforms
      */
     public static function simplify(array &$tree, array $options = []): void
     {
-        $symbols = json_decode((string)file_get_contents(dirname(__DIR__) . '/resources/math-symbols.json'), true, flags: JSON_THROW_ON_ERROR);
+        $symbols = Internal\RuntimeResources::mathSymbols();
         $replacement = static function (string $value) use ($options, $symbols): ?string {
             if (($options['replaceText'] ?? true) && preg_match('/^[a-zA-Z]+$/D', $value)) {
                 return $value;

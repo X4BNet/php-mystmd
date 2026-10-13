@@ -20,7 +20,7 @@ final class BuiltInOptions
     {
         if (self::$catalog === null) {
             self::$catalog = [];
-            $data = json_decode((string)file_get_contents(__DIR__ . '/../../resources/core-definitions.json'), true, flags: JSON_THROW_ON_ERROR);
+            $data = RuntimeResources::coreDefinitions();
             foreach ($data as $category => $definitions) {
                 foreach ($definitions as $spec) {
                     foreach ([$spec['name'], ...(array)($spec['alias'] ?? [])] as $name) {

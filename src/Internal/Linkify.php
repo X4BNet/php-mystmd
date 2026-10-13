@@ -23,7 +23,7 @@ final class Linkify
             $source = $child['value'];
             preg_match_all('~(?<![\w@/])(?:[\pL\pN](?:[\pL\pN-]*[\pL\pN])?\.)+([\pL]+)(?::\d+)?(?:/[^\s<>]*)?~u', $source, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
             $offset = 0;
-            $tlds = json_decode((string)file_get_contents(__DIR__ . '/../../resources/tlds.json'), true, flags: JSON_THROW_ON_ERROR);
+            $tlds = RuntimeResources::tlds();
             foreach ($matches as $match) {
                 if (in_array(strtolower($match[1][0]), ['py', 'md', 'dot', 'next', 'so', 'es', 'java', 'zip', 'sc', 'ir'], true) || !in_array(strtolower($match[1][0]), $tlds, true)) {
                     continue;

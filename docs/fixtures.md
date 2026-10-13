@@ -18,9 +18,11 @@ Do not update expectations using results from the PHP implementation.
 6. Run `node bin/export-definitions.mjs`, `node bin/export-edge-cases.mjs`, and
    `node bin/export-regressions.mjs`. The last two are supplementary compatibility
    probes evaluated by upstream, including malformed option values and footnotes.
-7. Run `php bin/source-provenance.php /absolute/path/to/mystmd` and
+7. Run `composer resources:embed` to update the PHP-packaged runtime catalogs from
+   the pinned JSON resources.
+8. Run `php bin/source-provenance.php /absolute/path/to/mystmd` and
    `php bin/build-coverage.php`. The latter must report no pending tests.
-8. Review fixture hashes, reference diffs, source version pins, licenses, and the
+9. Review fixture hashes, reference diffs, source version pins, licenses, and the
    test coverage manifest. Run the complete PHP test and analysis suites.
 
 `tests/Fixtures/upstream/manifest.json` records copied fixture hashes.
